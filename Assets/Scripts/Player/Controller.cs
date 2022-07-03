@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using UnityEngine;
 
 namespace Player
@@ -13,6 +11,7 @@ namespace Player
         private void Awake()
         {
             rigidbody = GetComponent<Rigidbody>();
+            GlobalEventManager.PlayerDeath.AddListener(() => speed = 0);
         }
 
         private void FixedUpdate()

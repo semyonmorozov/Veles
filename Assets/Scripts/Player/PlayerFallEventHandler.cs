@@ -24,7 +24,6 @@ namespace Player
                 return;
             }
             
-            Debug.Log($"Respawn {respawnPosition.Value.x}, {respawnPosition.Value.y}, {respawnPosition.Value.z}");
             transform.position = respawnPosition.Value;
         }
 
@@ -32,13 +31,12 @@ namespace Player
         {
             while (true)
             {
-                Debug.Log($"Try set new respawnPosition {transform.position.x}, {transform.position.y}, {transform.position.z}");
-                if (respawnPosition == null || Math.Abs(transform.position.y - respawnPosition.Value.y) < 0.5) // надо переделать на определения расстояния от земли
+                //TODO надо переделать, если медленно спускаться к обрыву, то можно зациклиться в падении
+                if (respawnPosition == null || Math.Abs(transform.position.y - respawnPosition.Value.y) < 0.5) 
                 {
                     respawnPosition = transform.position;
                 }
                 
-                Debug.Log($"New respawnPosition {respawnPosition.Value.x}, {respawnPosition.Value.y}, {respawnPosition.Value.z}");
                 yield return new WaitForSeconds(waitSecondsUntilUpdateRespawnPosition);
             }
         }
