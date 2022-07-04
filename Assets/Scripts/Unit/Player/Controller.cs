@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.Timeline;
+using Object = UnityEngine.Object;
 
 namespace Unit.Player
 {
@@ -13,9 +15,12 @@ namespace Unit.Player
         }
 
         public float speed = 1;
+        public float rotationSpeed = 100;
 
         public ControllerState state = ControllerState.ExploreWorld;
 
+        public Rigidbody shell;
+        
         private new Rigidbody rigidbody;
 
         private void Awake()
@@ -34,10 +39,36 @@ namespace Unit.Player
                     break;
                 case ControllerState.ExploreWorld:
                     MovePlayer();
-                    break;
-                default:
+                    //RotateToCursor();
                     break;
             }
+        }
+
+        private void RotateToCursor()
+        {
+            var lookRotation = Quaternion.LookRotation(Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position);
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, rotationSpeed * Time.fixedDeltaTime);
+        }
+
+        private void Update()
+        {
+            switch(state)
+            {
+                case ControllerState.InMenu:
+                    break;
+                case ControllerState.ExploreWorld:
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        Attack();
+                    }
+                    break;
+            }
+        }
+
+        private void Attack()
+        {
+            var playerTransform = transform;
+            Instantiate(shell, playerTransform.position, playerTransform.rotation);
         }
 
         private void MovePlayer()
