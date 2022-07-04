@@ -1,30 +1,15 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace Player
+namespace Unit
 {
-    public class PlayerState : MonoBehaviour
+    public class FallEventProvider : MonoBehaviour
     {
-        public int health = 100;
-        
         private const int FallPositionY = 0;
 
         private void Awake()
         {
             StartCoroutine(SendEventIfPlayerFell());
-        }
-
-        public void TakeDamage(int damage)
-        {
-            if (damage >= health)
-            {
-                health = 0;
-                GlobalEventManager.PlayerDeath.Invoke();
-            }
-            else
-            {
-                health -= damage;
-            }
         }
 
         private IEnumerator SendEventIfPlayerFell()
@@ -33,7 +18,7 @@ namespace Player
             {
                 if (transform.position.y < FallPositionY) 
                 {
-                    GlobalEventManager.PlayerFellEvent.Invoke();
+                    GlobalEventManager.UnitFellEvent.Invoke(gameObject);
                 }
 
                 yield return new WaitForSeconds(2);

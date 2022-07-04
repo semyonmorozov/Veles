@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Player
+namespace Unit.Player
 {
     public class PlayerFallEventHandler : MonoBehaviour
     {
@@ -12,12 +12,17 @@ namespace Player
 
         private void Awake()
         {
-            GlobalEventManager.PlayerFellEvent.AddListener(Handle);
+            GlobalEventManager.UnitFellEvent.AddListener(Handle);
             StartCoroutine(UpdateRespawnPosition());
         }
 
-        private void Handle()
+        private void Handle(GameObject unit)
         {
+            if (!unit.CompareTag("Player"))
+            {
+                return;
+            }
+            
             if (respawnPosition == null)
             {
                 Debug.Log("Need respawn, but respawnPosition is null.");
