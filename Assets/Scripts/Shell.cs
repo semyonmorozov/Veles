@@ -1,4 +1,5 @@
 using System;
+using Unit;
 using UnityEngine;
 
 public class Shell : MonoBehaviour
@@ -16,12 +17,19 @@ public class Shell : MonoBehaviour
     {
         Destroy (gameObject, lifeTimeSeconds);
     }
-    
+
+    private void OnTriggerEnter(Collider other)
+    {
+        var target = other.gameObject;
+        if (target.CompareTag("Enemy"))
+        {
+            target.GetComponent<EnemyHealth>().TakeDamage(10);
+            Destroy(gameObject);
+        }
+    }
+
     private void FixedUpdate()
     {
         rigidbody.velocity = transform.forward * (moveSpeed * Time.fixedDeltaTime);
-        
-        var forward = transform.TransformDirection(Vector3.forward) * 1;
-        Debug.DrawRay(transform.position, forward, Color.red);
     }
 }
