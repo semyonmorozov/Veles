@@ -41,9 +41,18 @@ namespace Units.Enemy
 
         private void FixedUpdate()
         {
-            //LookAtPlayer();
             if (enemyState == EnemyState.Attack)
+            {
+                LookAtPlayer();
                 MoveToPlayer();
+                DrawForwardRay();
+            }
+        }
+        private void DrawForwardRay()
+        {
+            var enemyTransform = transform;
+            var forward = enemyTransform.TransformDirection(Vector3.forward) * 2;
+            Debug.DrawRay(enemyTransform.position, forward, Color.red);
         }
 
         private void OnCollisionEnter(Collision collision)
@@ -75,14 +84,14 @@ namespace Units.Enemy
 
         private void MoveToPlayer()
         {
-            var normalizedTargetPosition = (playerTransform.position - transform.position).normalized;
-            var targetPositionXY = new Vector3(normalizedTargetPosition.x, 0, normalizedTargetPosition.z);
-            enemyRigidbody.velocity = transform.TransformDirection(targetPositionXY * (moveSpeed * Time.fixedDeltaTime));
+            enemyRigidbody.velocity = transform.forward * (moveSpeed * Time.fixedDeltaTime);
         }
 
         private void LookAtPlayer()
         {
             var lookRotation = Quaternion.LookRotation(playerTransform.position - transform.position);
+            lookRotation.z = 0;
+            lookRotation.x = 0;
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, rotationSpeed * Time.fixedDeltaTime);
         }
     }
