@@ -11,7 +11,7 @@ namespace Units.Weapon
             projectile = Resources.Load("SowBallProjectile");
         }
 
-        public override void Attack()
+        protected override void OnAttack()
         {
             var playerTransform = transform;
             var playerTransformPosition = playerTransform.position;
