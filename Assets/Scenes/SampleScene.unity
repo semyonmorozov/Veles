@@ -585,5 +585,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   cameraPositionX: -15
-  cameraPositionY: 20
+  cameraPositionY: 25
   cameraPositionZ: 0
