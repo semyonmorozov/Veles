@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 8783701003916244792}
   - component: {fileID: 4015679115729660787}
   - component: {fileID: 8032886938653697148}
-  - component: {fileID: 3493215999706455806}
   - component: {fileID: 1844150143554817090}
   - component: {fileID: -5987402242819401415}
+  - component: {fileID: -1032056772027926517}
   m_Layer: 0
-  m_Name: Shell
+  m_Name: SowBallProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86,19 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &3493215999706455806
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8927670032681462327}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 10
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1844150143554817090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5749bb59d72ffa7409eedfa9c1049a91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 200
+  moveSpeed: 800
   lifeTimeSeconds: 5
 --- !u!54 &-5987402242819401415
 Rigidbody:
@@ -127,5 +114,19 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!136 &-1032056772027926517
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8927670032681462327}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 10
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}

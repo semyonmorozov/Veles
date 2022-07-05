@@ -1,10 +1,7 @@
-using System;
+using Units.Weapon;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.Timeline;
-using Object = UnityEngine.Object;
 
-namespace Unit.Player
+namespace Units.Player
 {
     public class Controller : MonoBehaviour
     {
@@ -20,7 +17,7 @@ namespace Unit.Player
 
         public ControllerState state = ControllerState.ExploreWorld;
 
-        public Rigidbody shell;
+        public Weapon.Weapon weapon;
         
         private new Rigidbody rigidbody;
         private new Camera camera;
@@ -31,7 +28,9 @@ namespace Unit.Player
             camera = Camera.main;
 
             //TODO отписаться от события смерти, когда появится меню, должно быть реализовано иначе
-            GlobalEventManager.PlayerDeath.AddListener(() => state = ControllerState.InMenu); 
+            GlobalEventManager.PlayerDeath.AddListener(() => state = ControllerState.InMenu);
+
+            weapon = gameObject.AddComponent<SowBall>();
         }
 
         private void FixedUpdate()
@@ -90,8 +89,7 @@ namespace Unit.Player
 
         private void Attack()
         {
-            var playerTransform = transform;
-            Instantiate(shell, playerTransform.position, playerTransform.rotation);
+            weapon.Attack();
         }
 
         private void MovePlayer()

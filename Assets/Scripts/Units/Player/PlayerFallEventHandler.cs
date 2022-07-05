@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Unit.Player
+namespace Units.Player
 {
     public class PlayerFallEventHandler : MonoBehaviour
     {

@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Unit.Enemy
+namespace Units.Enemy
 {
     public class EnemyAI : MonoBehaviour
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace Unit
+namespace Units
 {
     public class FallEventProvider : MonoBehaviour
     {

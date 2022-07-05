@@ -485,12 +485,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 500
-  rotationSpeed: 100
+  rotationSpeed: 5
   groundMask:
     serializedVersion: 2
     m_Bits: 8
   state: 1
-  shell: {fileID: -5987402242819401415, guid: ef322c8ceccb9104a8d99f4c31f51292, type: 3}
+  weapon: {fileID: 0}
 --- !u!136 &723492409
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -1,4 +1,4 @@
-namespace Unit
+namespace Units.Enemy
 {
     public class EnemyHealth : Health
     {

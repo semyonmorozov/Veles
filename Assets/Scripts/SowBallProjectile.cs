@@ -1,8 +1,8 @@
 using System;
-using Unit;
+using Units.Enemy;
 using UnityEngine;
 
-public class Shell : MonoBehaviour
+public class SowBallProjectile : MonoBehaviour
 {
     public int moveSpeed = 200;
     public int lifeTimeSeconds = 2;
@@ -24,8 +24,8 @@ public class Shell : MonoBehaviour
         if (target.CompareTag("Enemy"))
         {
             target.GetComponent<EnemyHealth>().TakeDamage(10);
-            Destroy(gameObject);
         }
+        Destroy(gameObject);
     }
 
     private void FixedUpdate()

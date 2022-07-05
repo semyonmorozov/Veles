@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Unit
+namespace Units
 {
     public class Health : MonoBehaviour
     {
