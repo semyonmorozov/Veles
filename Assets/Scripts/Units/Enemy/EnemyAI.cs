@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Units.Enemy
 {
@@ -11,8 +12,6 @@ namespace Units.Enemy
             Attack
         }
 
-        public int moveSpeed = 1;
-        public int rotationSpeed = 1;
         public int contactDamage = 10;
         public int contactDamageDelay = 1;
     
@@ -23,6 +22,7 @@ namespace Units.Enemy
         private GameObject playerGameObject;
         private Health health;
         private readonly IEnumerator dealContactDamageCoroutine;
+        private NavMeshAgent navAgent;
 
         public EnemyAI()
         {
@@ -35,6 +35,7 @@ namespace Units.Enemy
             playerGameObject = GameObject.FindWithTag("Player");
             health = playerGameObject.GetComponent<Health>();
             playerTransform = playerGameObject.GetComponent<Transform>();
+            navAgent = GetComponent<NavMeshAgent>();
 
             GlobalEventManager.PlayerDeath.AddListener(() => enemyState = EnemyState.Calm);
         }
@@ -43,7 +44,6 @@ namespace Units.Enemy
         {
             if (enemyState == EnemyState.Attack)
             {
-                LookAtPlayer();
                 MoveToPlayer();
                 DrawForwardRay();
             }
@@ -84,15 +84,7 @@ namespace Units.Enemy
 
         private void MoveToPlayer()
         {
-            enemyRigidbody.velocity = transform.forward * (moveSpeed * Time.fixedDeltaTime);
-        }
-
-        private void LookAtPlayer()
-        {
-            var lookRotation = Quaternion.LookRotation(playerTransform.position - transform.position);
-            lookRotation.z = 0;
-            lookRotation.x = 0;
-            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, rotationSpeed * Time.fixedDeltaTime);
+            navAgent.destination = playerTransform.position;
         }
     }
 }

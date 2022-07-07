@@ -1,14 +1,17 @@
-﻿using UnityEngine;
+﻿using Unity.VisualScripting;
+using UnityEngine;
 
 namespace Units.Weapon
 {
     public class SowBall : Weapon
     {
+        public int damage = 10;
         public Object projectile;
-
         private void Awake()
         {
             projectile = Resources.Load("SowBallProjectile");
+            projectile.GetComponent<SowBallProjectile>().damage = damage;
+            cooldown = 0.2f;
         }
 
         protected override void OnAttack()
