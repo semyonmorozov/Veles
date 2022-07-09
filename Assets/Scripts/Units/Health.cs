@@ -1,21 +1,28 @@
+using System;
 using UnityEngine;
 
 namespace Units
 {
     public class Health : MonoBehaviour
     {
-        public int health = 100;
+        public int maxHealth = 100;
+        public int currentHealth;
+
+        private void Awake()
+        {
+            currentHealth = maxHealth;
+        }
 
         public void TakeDamage(int damage)
         {
-            if (damage >= health)
+            if (damage >= currentHealth)
             {
-                health = 0;
+                currentHealth = 0;
                 OnDeath();
             }
             else
             {
-                health -= damage;
+                currentHealth -= damage;
             }
         }
 

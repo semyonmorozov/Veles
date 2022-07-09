@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9066dd98a8037e46a5d6dd6a33a8cb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactDamage: 1
+  contactDamage: 5
   contactDamageDelay: 1
   enemyState: 1
 --- !u!114 &4594150796363411781
@@ -144,7 +144,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f92d34784f714fa2a43e9c540576b4da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  maxHealth: 100
+  currentHealth: 0
 --- !u!195 &147403999450191437
 NavMeshAgent:
   m_ObjectHideFlags: 0
