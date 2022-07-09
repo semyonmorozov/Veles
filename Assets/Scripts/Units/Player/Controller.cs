@@ -1,3 +1,4 @@
+using System.Collections;
 using Units.Weapon;
 using UnityEngine;
 
@@ -13,7 +14,7 @@ namespace Units.Player
 
         public float speed = 1;
         public float rotationSpeed = 100;
-        public LayerMask groundMask;
+        public  int fallPositionY = 0;
 
         public ControllerState state = ControllerState.ExploreWorld;
 
@@ -40,10 +41,19 @@ namespace Units.Player
                 case ControllerState.InMenu:
                     break;
                 case ControllerState.ExploreWorld:
+                    SendEventIfPlayerFell();
                     MovePlayer();
                     RotateToCursor();
                     DrawPlayerForwardRay();
                     break;
+            }
+        }
+
+        private void SendEventIfPlayerFell()
+        {
+            if (transform.position.y < fallPositionY) 
+            {
+                GlobalEventManager.UnitFellEvent.Invoke(gameObject);
             }
         }
 
@@ -97,7 +107,7 @@ namespace Units.Player
             var horizontalDelta = Input.GetAxis("Horizontal") * speed * Time.fixedDeltaTime;
             var verticalDelta = Input.GetAxis("Vertical") * speed * Time.fixedDeltaTime;
             
-            rigidbody.velocity = new Vector3(verticalDelta, 0, -horizontalDelta);
+            rigidbody.velocity = new Vector3(verticalDelta, rigidbody.velocity.y, -horizontalDelta);
         }
     }
 }
