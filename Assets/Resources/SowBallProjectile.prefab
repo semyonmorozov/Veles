@@ -98,10 +98,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5749bb59d72ffa7409eedfa9c1049a91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 800
-  lifeTimeSeconds: 5
-  damage: 35
-  force: 100
+  moveSpeed: 600
+  lifeTimeSeconds: 3
+  damage: 10
+  force: 500
 --- !u!54 &-5987402242819401415
 Rigidbody:
   m_ObjectHideFlags: 0

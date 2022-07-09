@@ -49,7 +49,7 @@ namespace Units.Player
 
         private void RotateToCursor()
         {
-            var mousePos = GetMousePosition().position;
+            var mousePos = GetMousePosition();
             var lookRotation = Quaternion.LookRotation(mousePos - transform.position);
             lookRotation.z = 0;
             lookRotation.x = 0;
@@ -63,13 +63,13 @@ namespace Units.Player
             Debug.DrawRay(playerTransform.position, forward, Color.green);
         }
 
-        private (bool success, Vector3 position) GetMousePosition()
+        private Vector3 GetMousePosition()
         {
             var ray = camera.ScreenPointToRay(Input.mousePosition);
- 
-            return Physics.Raycast(ray, out var hitInfo, Mathf.Infinity, groundMask) 
-                ? (success: true, position: hitInfo.point) 
-                : (success: false, position: Vector3.zero);
+            var plane = new Plane(Vector3.up, transform.position);
+
+            plane.Raycast(ray, out var hitInfo);
+            return ray.GetPoint(hitInfo);
         }
 
         private void Update()
