@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace UI
 {
-    public class Health : MonoBehaviour
+    public class HealthGlobe : MonoBehaviour
     {
         private PlayerHealth playerHealth;
         private Vector3 startScale;

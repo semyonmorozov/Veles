@@ -101,7 +101,7 @@ MonoBehaviour:
   moveSpeed: 600
   lifeTimeSeconds: 3
   damage: 10
-  force: 500
+  force: 1000
 --- !u!54 &-5987402242819401415
 Rigidbody:
   m_ObjectHideFlags: 0

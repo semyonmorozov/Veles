@@ -8,6 +8,7 @@ namespace Units
         public int maxHealth = 100;
         public int currentHealth;
 
+        public bool IsDead() => currentHealth == 0;
         private void Awake()
         {
             currentHealth = maxHealth;
@@ -15,6 +16,10 @@ namespace Units
 
         public void TakeDamage(int damage)
         {
+            if (IsDead())
+            {
+                return;
+            }
             if (damage >= currentHealth)
             {
                 currentHealth = 0;

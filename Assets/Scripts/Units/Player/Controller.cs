@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using Units.Weapon;
 using UnityEngine;
 
@@ -12,11 +13,18 @@ namespace Units.Player
             ExploreWorld
         }
 
+        public enum ControllerType
+        {
+            Mouse,
+            XboxGamePad
+        }
+
         public float speed = 1;
         public float rotationSpeed = 100;
         public  int fallPositionY = 0;
 
         public ControllerState state = ControllerState.ExploreWorld;
+        public ControllerType controllerType = ControllerType.Mouse;
 
         public Weapon.Weapon weapon;
         
@@ -32,6 +40,18 @@ namespace Units.Player
             GlobalEventManager.PlayerDeath.AddListener(() => state = ControllerState.InMenu);
 
             weapon = gameObject.AddComponent<SowBall>();
+            SetControllerType();
+        }
+
+        private void SetControllerType()
+        {
+            foreach (var x in Input.GetJoystickNames())
+            {
+                if (x.Contains("Xbox"))
+                {
+                    controllerType = ControllerType.XboxGamePad;
+                }
+            }
         }
 
         private void FixedUpdate()
@@ -43,7 +63,7 @@ namespace Units.Player
                 case ControllerState.ExploreWorld:
                     SendEventIfPlayerFell();
                     MovePlayer();
-                    RotateToCursor();
+                    Rotate();
                     DrawPlayerForwardRay();
                     break;
             }
@@ -57,8 +77,9 @@ namespace Units.Player
             }
         }
 
-        private void RotateToCursor()
+        private void Rotate()
         {
+            
             var mousePos = GetMousePosition();
             var lookRotation = Quaternion.LookRotation(mousePos - transform.position);
             lookRotation.z = 0;
