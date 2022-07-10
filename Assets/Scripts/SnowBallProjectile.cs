@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Threading.Tasks;
 using Units.Enemy;
 using UnityEngine;
 using UnityEngine.AI;
@@ -28,15 +30,22 @@ public class SnowBallProjectile : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         var target = other.gameObject;
-        if (target.CompareTag("Enemy"))
-        {
-            target.GetComponent<EnemyHealth>().TakeDamage(Damage);
+        
+        if (!target.CompareTag("Enemy"))
+            return;
+        target.GetComponent<EnemyHealth>().TakeDamage(Damage);
             
-            var dir = rigidbody.velocity.normalized;
-            target.GetComponent<Rigidbody>().AddForce(dir*Force);
+        var dir = rigidbody.velocity.normalized;
+        target.GetComponent<Rigidbody>().AddForce(dir*Force);
+        Task.Delay(500);
             
-            Destroy(gameObject);
-        }
+        StartCoroutine(ScheduledDestroy());
+    }
+
+    private IEnumerator ScheduledDestroy()
+    {
+        yield return new WaitForSeconds(0.05f);
+        Destroy(gameObject);
     }
 
     private void FixedUpdate()

@@ -26,7 +26,7 @@ namespace World
 
         private void SpawnItem(Transform enemyTransform)
         {
-            if (Random.Range(0, 100) >= 30)
+            if (Random.Range(0, 100) >= 50)
             {
                 return;
             }

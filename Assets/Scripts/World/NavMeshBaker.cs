@@ -1,5 +1,4 @@
-﻿using External.NavMeshComponents.Scripts;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 namespace World
