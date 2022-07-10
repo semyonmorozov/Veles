@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -5987402242819401415}
   - component: {fileID: -1032056772027926517}
   m_Layer: 0
-  m_Name: SowBallProjectile
+  m_Name: SnowBallProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

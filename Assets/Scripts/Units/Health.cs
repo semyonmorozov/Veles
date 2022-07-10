@@ -1,15 +1,16 @@
 using System;
+using Units.Player;
 using UnityEngine;
 
 namespace Units
 {
     public class Health : MonoBehaviour
     {
-        public int MaxHealth = 100;
+        public virtual int MaxHealth => 100;
         public int CurrentHealth;
 
         public bool IsDead() => CurrentHealth == 0;
-        private void Awake()
+        protected virtual void Awake()
         {
             CurrentHealth = MaxHealth;
         }
@@ -28,6 +29,22 @@ namespace Units
             else
             {
                 CurrentHealth -= damage;
+            }
+        }
+
+        public void RestoreHealth(int restorationAmount)
+        {
+            if (IsDead())
+            {
+                return;
+            }
+            if (CurrentHealth + restorationAmount >= MaxHealth)
+            {
+                CurrentHealth = MaxHealth;
+            }
+            else
+            {
+                CurrentHealth += restorationAmount;
             }
         }
 

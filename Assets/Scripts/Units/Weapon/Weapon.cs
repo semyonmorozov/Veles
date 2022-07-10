@@ -5,7 +5,7 @@ namespace Units.Weapon
 {
     public abstract class Weapon : MonoBehaviour
     {
-        public float Cooldown = 1;
+        protected virtual float Cooldown => 1;
         
         private bool isReloaded = true;
 

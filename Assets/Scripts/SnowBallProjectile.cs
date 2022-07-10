@@ -2,18 +2,22 @@ using Units.Enemy;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class SowBallProjectile : MonoBehaviour
+public class SnowBallProjectile : MonoBehaviour
 {
-    public int MoveSpeed = 200;
+    public int MoveSpeed = 800;
     public int LifeTimeSeconds = 2;
     public int Damage = 10;
     public float Force = 3;
+    public float Size = 3;
 
     private new Rigidbody rigidbody;
+    private new Transform transform;
 
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
+        transform = GetComponent<Transform>();
+        transform.localScale = new Vector3(Size, Size, Size);
     }
 
     private void Start ()
@@ -30,8 +34,9 @@ public class SowBallProjectile : MonoBehaviour
             
             var dir = rigidbody.velocity.normalized;
             target.GetComponent<Rigidbody>().AddForce(dir*Force);
+            
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
     }
 
     private void FixedUpdate()

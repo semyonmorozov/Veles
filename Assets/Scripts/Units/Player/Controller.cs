@@ -6,27 +6,34 @@ namespace Units.Player
 {
     public class Controller : MonoBehaviour
     {
-        public float Speed = 1;
-        public float RotationSpeed = 100;
-        public  int FallPositionY = 0;
+        public int DefaultMoveSpeed = 200;
+        public int MoveSpeedAgilityMultiplier = 100;
+        public int DefaultRotationSpeed = 20;
+        public int RotationSpeedAgilityMultiplier = 10;
+
+        public int FallPositionY = 0;
 
         public ControllerState State = ControllerState.ExploreWorld;
         public ControllerType ControllerType = ControllerType.Mouse;
 
         public Weapon.Weapon Weapon;
-        
+
         private new Rigidbody rigidbody;
         private new Camera camera;
+        private PlayerStats playerStats;
+        private float Speed => DefaultMoveSpeed + playerStats.Agility * MoveSpeedAgilityMultiplier;
+        private float RotationSpeed => DefaultRotationSpeed + playerStats.Agility * RotationSpeedAgilityMultiplier;
 
         private void Awake()
         {
             rigidbody = GetComponent<Rigidbody>();
             camera = Camera.main;
 
-            //TODO отписаться от события смерти, когда появится меню, должно быть реализовано иначе
+            playerStats = GetComponent<PlayerStats>();
+            
             GlobalEventManager.PlayerDeath.AddListener(() => State = ControllerState.InMenu);
 
-            Weapon = gameObject.AddComponent<SowBall>();
+            Weapon = gameObject.AddComponent<SowBallWeapon>();
             SetControllerType();
         }
 
@@ -115,7 +122,10 @@ namespace Units.Player
 
         private void Attack()
         {
-            Weapon.Attack();
+            if (Weapon != null)
+            {
+                Weapon.Attack();
+            }
         }
 
         private void MovePlayer()
