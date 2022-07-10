@@ -1,18 +1,19 @@
-﻿using Units.Player;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace World
+namespace World.Items
 {
-    public class Item : MonoBehaviour
+    public abstract class ItemBase : MonoBehaviour
     {
         private void OnTriggerEnter(Collider other)
         {
             var collisionGameObject = other.gameObject;
             if (collisionGameObject.CompareTag("Player"))
             {
-                collisionGameObject.GetComponent<PlayerStats>().Agility = 1;
+                OnPickUp(collisionGameObject);
                 Destroy(gameObject);
             }
         }
+
+        protected abstract void OnPickUp(GameObject collisionGameObject);
     }
 }

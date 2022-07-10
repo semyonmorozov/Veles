@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Units.Weapon
 {
-    public class SowBallWeapon : Weapon
+    public class SowBallWeaponBase : WeaponBase
     {
         public Object Projectile;
         private PlayerStats playerStats;
@@ -12,7 +12,7 @@ namespace Units.Weapon
 
         private int Damage => 2 + playerStats.Intelligence * 5;
         private float Force => -1 + playerStats.WillPower * 2;
-        private float Size => 1 + (playerStats.Intelligence - 10)/2;
+        private float Size => 0.5f + playerStats.Intelligence / 8f;
         protected override float Cooldown => 3f - playerStats.WillPower / 10f * 3f;
 
         private void Awake()

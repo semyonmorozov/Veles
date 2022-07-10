@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Units.Weapon
 {
-    public abstract class Weapon : MonoBehaviour
+    public abstract class WeaponBase : MonoBehaviour
     {
         protected virtual float Cooldown => 1;
         

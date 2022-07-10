@@ -4,7 +4,7 @@ namespace Units.Enemy
     {
         protected override void OnDeath()
         {
-            GlobalEventManager.EnemyDeath.Invoke();
+            GlobalEventManager.EnemyDeath.Invoke(transform);
             Destroy(gameObject);
         }
     }

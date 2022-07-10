@@ -16,7 +16,7 @@ namespace Units.Player
         public ControllerState State = ControllerState.ExploreWorld;
         public ControllerType ControllerType = ControllerType.Mouse;
 
-        public Weapon.Weapon Weapon;
+        public Weapon.WeaponBase Weapon;
 
         private new Rigidbody rigidbody;
         private new Camera camera;
@@ -33,7 +33,7 @@ namespace Units.Player
             
             GlobalEventManager.PlayerDeath.AddListener(() => State = ControllerState.InMenu);
 
-            Weapon = gameObject.AddComponent<SowBallWeapon>();
+            Weapon = gameObject.AddComponent<SowBallWeaponBase>();
             SetControllerType();
         }
 
