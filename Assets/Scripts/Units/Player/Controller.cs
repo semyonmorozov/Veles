@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Linq;
+using System;
 using Units.Weapon;
 using UnityEngine;
 
@@ -7,26 +6,14 @@ namespace Units.Player
 {
     public class Controller : MonoBehaviour
     {
-        public enum ControllerState
-        {
-            InMenu,
-            ExploreWorld
-        }
+        public float Speed = 1;
+        public float RotationSpeed = 100;
+        public  int FallPositionY = 0;
 
-        public enum ControllerType
-        {
-            Mouse,
-            XboxGamePad
-        }
+        public ControllerState State = ControllerState.ExploreWorld;
+        public ControllerType ControllerType = ControllerType.Mouse;
 
-        public float speed = 1;
-        public float rotationSpeed = 100;
-        public  int fallPositionY = 0;
-
-        public ControllerState state = ControllerState.ExploreWorld;
-        public ControllerType controllerType = ControllerType.Mouse;
-
-        public Weapon.Weapon weapon;
+        public Weapon.Weapon Weapon;
         
         private new Rigidbody rigidbody;
         private new Camera camera;
@@ -37,9 +24,9 @@ namespace Units.Player
             camera = Camera.main;
 
             //TODO отписаться от события смерти, когда появится меню, должно быть реализовано иначе
-            GlobalEventManager.PlayerDeath.AddListener(() => state = ControllerState.InMenu);
+            GlobalEventManager.PlayerDeath.AddListener(() => State = ControllerState.InMenu);
 
-            weapon = gameObject.AddComponent<SowBall>();
+            Weapon = gameObject.AddComponent<SowBall>();
             SetControllerType();
         }
 
@@ -49,14 +36,14 @@ namespace Units.Player
             {
                 if (x.Contains("Xbox"))
                 {
-                    controllerType = ControllerType.XboxGamePad;
+                    ControllerType = ControllerType.XboxGamePad;
                 }
             }
         }
 
         private void FixedUpdate()
         {
-            switch(state)
+            switch(State)
             {
                 case ControllerState.InMenu:
                     break;
@@ -71,7 +58,7 @@ namespace Units.Player
 
         private void SendEventIfPlayerFell()
         {
-            if (transform.position.y < fallPositionY) 
+            if (transform.position.y < FallPositionY) 
             {
                 GlobalEventManager.UnitFellEvent.Invoke(gameObject);
             }
@@ -79,12 +66,20 @@ namespace Units.Player
 
         private void Rotate()
         {
-            
-            var mousePos = GetMousePosition();
-            var lookRotation = Quaternion.LookRotation(mousePos - transform.position);
-            lookRotation.z = 0;
-            lookRotation.x = 0;
-            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, rotationSpeed * Time.fixedDeltaTime);
+            switch (ControllerType)
+            {
+                case ControllerType.Mouse:
+                    var mousePos = GetMousePosition();
+                    var lookRotation = Quaternion.LookRotation(mousePos - transform.position);
+                    lookRotation.z = 0;
+                    lookRotation.x = 0;
+                    transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, RotationSpeed * Time.fixedDeltaTime);
+                    break;
+                case ControllerType.XboxGamePad:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         private void DrawPlayerForwardRay()
@@ -105,7 +100,7 @@ namespace Units.Player
 
         private void Update()
         {
-            switch(state)
+            switch(State)
             {
                 case ControllerState.InMenu:
                     break;
@@ -120,15 +115,27 @@ namespace Units.Player
 
         private void Attack()
         {
-            weapon.Attack();
+            Weapon.Attack();
         }
 
         private void MovePlayer()
         {
-            var horizontalDelta = Input.GetAxis("Horizontal") * speed * Time.fixedDeltaTime;
-            var verticalDelta = Input.GetAxis("Vertical") * speed * Time.fixedDeltaTime;
+            var horizontalDelta = Input.GetAxis("Horizontal") * Speed * Time.fixedDeltaTime;
+            var verticalDelta = Input.GetAxis("Vertical") * Speed * Time.fixedDeltaTime;
             
             rigidbody.velocity = new Vector3(verticalDelta, rigidbody.velocity.y, -horizontalDelta);
         }
+    }
+
+    public enum ControllerType
+    {
+        Mouse,
+        XboxGamePad
+    }
+
+    public enum ControllerState
+    {
+        InMenu,
+        ExploreWorld
     }
 }

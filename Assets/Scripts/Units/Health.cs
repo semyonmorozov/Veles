@@ -5,13 +5,13 @@ namespace Units
 {
     public class Health : MonoBehaviour
     {
-        public int maxHealth = 100;
-        public int currentHealth;
+        public int MaxHealth = 100;
+        public int CurrentHealth;
 
-        public bool IsDead() => currentHealth == 0;
+        public bool IsDead() => CurrentHealth == 0;
         private void Awake()
         {
-            currentHealth = maxHealth;
+            CurrentHealth = MaxHealth;
         }
 
         public void TakeDamage(int damage)
@@ -20,14 +20,14 @@ namespace Units
             {
                 return;
             }
-            if (damage >= currentHealth)
+            if (damage >= CurrentHealth)
             {
-                currentHealth = 0;
+                CurrentHealth = 0;
                 OnDeath();
             }
             else
             {
-                currentHealth -= damage;
+                CurrentHealth -= damage;
             }
         }
 

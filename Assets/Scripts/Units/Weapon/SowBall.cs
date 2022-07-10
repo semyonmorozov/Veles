@@ -5,13 +5,13 @@ namespace Units.Weapon
 {
     public class SowBall : Weapon
     {
-        public int damage = 10;
-        public Object projectile;
+        public int Damage = 10;
+        public Object Projectile;
         private void Awake()
         {
-            projectile = Resources.Load("SowBallProjectile");
-            projectile.GetComponent<SowBallProjectile>().damage = damage;
-            cooldown = 0.2f;
+            Projectile = Resources.Load("SowBallProjectile");
+            Projectile.GetComponent<SowBallProjectile>().Damage = Damage;
+            Cooldown = 0.2f;
         }
 
         protected override void OnAttack()
@@ -20,7 +20,7 @@ namespace Units.Weapon
             var playerTransformPosition = playerTransform.position;
             var shift = playerTransform.forward.normalized * 2;
             shift.y = 0;
-            Instantiate(projectile, playerTransformPosition + shift, playerTransform.rotation);
+            Instantiate(Projectile, playerTransformPosition + shift, playerTransform.rotation);
         }
     }
 }

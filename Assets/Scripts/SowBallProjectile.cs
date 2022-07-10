@@ -4,10 +4,10 @@ using UnityEngine.AI;
 
 public class SowBallProjectile : MonoBehaviour
 {
-    public int moveSpeed = 200;
-    public int lifeTimeSeconds = 2;
-    public int damage = 10;
-    public float force = 3;
+    public int MoveSpeed = 200;
+    public int LifeTimeSeconds = 2;
+    public int Damage = 10;
+    public float Force = 3;
 
     private new Rigidbody rigidbody;
 
@@ -18,7 +18,7 @@ public class SowBallProjectile : MonoBehaviour
 
     private void Start ()
     {
-        Destroy (gameObject, lifeTimeSeconds);
+        Destroy (gameObject, LifeTimeSeconds);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -26,16 +26,16 @@ public class SowBallProjectile : MonoBehaviour
         var target = other.gameObject;
         if (target.CompareTag("Enemy"))
         {
-            target.GetComponent<EnemyHealth>().TakeDamage(damage);
+            target.GetComponent<EnemyHealth>().TakeDamage(Damage);
             
             var dir = rigidbody.velocity.normalized;
-            target.GetComponent<Rigidbody>().AddForce(dir*force);
+            target.GetComponent<Rigidbody>().AddForce(dir*Force);
         }
         Destroy(gameObject);
     }
 
     private void FixedUpdate()
     {
-        rigidbody.velocity = transform.forward * (moveSpeed * Time.fixedDeltaTime);
+        rigidbody.velocity = transform.forward * (MoveSpeed * Time.fixedDeltaTime);
     }
 }

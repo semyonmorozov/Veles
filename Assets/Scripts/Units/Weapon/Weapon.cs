@@ -5,7 +5,7 @@ namespace Units.Weapon
 {
     public abstract class Weapon : MonoBehaviour
     {
-        public float cooldown = 1;
+        public float Cooldown = 1;
         
         private bool isReloaded = true;
 
@@ -24,7 +24,7 @@ namespace Units.Weapon
         private IEnumerator StartCooldown()
         {
             isReloaded = false;
-            yield return new WaitForSeconds(cooldown);
+            yield return new WaitForSeconds(Cooldown);
             isReloaded = true;
         }
     }

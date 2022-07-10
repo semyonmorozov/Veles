@@ -5,11 +5,11 @@ namespace World
 {
     public class SunRotation : MonoBehaviour
     {
-        public float speed = 1;
+        public float Speed = 1;
 
         private void FixedUpdate()
         {
-            transform.Rotate(new Vector3(1, 0) * (speed * Time.fixedDeltaTime));
+            transform.Rotate(new Vector3(1, 0) * (Speed * Time.fixedDeltaTime));
         }
     }
 }

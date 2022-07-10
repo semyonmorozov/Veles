@@ -5,7 +5,7 @@ namespace World
 {
     public class AppearRestartButtonOnDeath: MonoBehaviour
     {
-        public GameObject restartButton;
+        public GameObject RestartButton;
         
         private void Awake()
         {
@@ -15,7 +15,7 @@ namespace World
         private IEnumerator Appear()
         {
             yield return new WaitForSeconds(2);
-            restartButton.SetActive(true);
+            RestartButton.SetActive(true);
         }
     }
 }

@@ -8,15 +8,12 @@ namespace UI
     {
         private PlayerHealth playerHealth;
         private Vector3 startScale;
-        private float _angle;
-        private Vector3 _centre;
-        public float RotateSpeed = 0.5f;
+        private float angle;
 
         private void Awake()
         {
             playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
             startScale = transform.localScale;
-            _centre = transform.localPosition;
         }
 
         private void FixedUpdate()
@@ -26,22 +23,17 @@ namespace UI
                 ReduceByCurrentHealth(startScale.y),
                 startScale.z
             );
-            
-            _angle += RotateSpeed * Time.fixedDeltaTime;
- 
-            var offset = new Vector3(Mathf.Sin(_angle), Mathf.Cos(_angle)) * ((1f-GetPlayerCurrentHealthPercent())*30f);
-            transform.localPosition = _centre + offset;
         }
 
-        private float ReduceByCurrentHealth(float value)
+        private float ReduceByCurrentHealth(float diameter)
         {
-            //Уменьшаем площадь сферы пропорционально текущему здоровью, при условии, что параметры скейла можно считать за диаметр сферы
-            return (float)Math.Sqrt(Math.Pow(value/2,2) * GetPlayerCurrentHealthPercent())*2;
+            //Уменьшаем площадь сферы пропорционально текущему здоровью
+            return (float)Math.Sqrt(Math.Pow(diameter/2,2) * GetPlayerCurrentHealthPercent())*2;
         }
 
         private float GetPlayerCurrentHealthPercent()
         {
-            return playerHealth.currentHealth / ((float)playerHealth.maxHealth / 100) / 100;
+            return playerHealth.CurrentHealth / ((float)playerHealth.MaxHealth / 100) / 100;
         }
     }
 }

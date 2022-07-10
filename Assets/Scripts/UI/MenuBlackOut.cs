@@ -7,7 +7,7 @@ namespace UI
     public class MenuBlackOut : MonoBehaviour
     {
         private Image blackOutImage;
-        public float fadingDelay = 0.01f;
+        public float FadingDelay = 0.01f;
 
         private void Awake()
         {
@@ -27,7 +27,7 @@ namespace UI
                 }
 
                 blackOutImage.color = new Color(color.r, color.g, color.b, color.a - 0.01f);
-                yield return new WaitForSeconds(fadingDelay);
+                yield return new WaitForSeconds(FadingDelay);
             }
         
             blackOutImage.enabled = false;
@@ -35,7 +35,6 @@ namespace UI
 
         private IEnumerator FadeIn()
         {
-            Debug.Log("Start");
             blackOutImage.enabled = true;
             while (true)
             {
@@ -46,7 +45,7 @@ namespace UI
                 }
 
                 blackOutImage.color = new Color(color.r, color.g, color.b, color.a + 0.01f);
-                yield return new WaitForSeconds(fadingDelay);
+                yield return new WaitForSeconds(FadingDelay);
             }
         }
     }

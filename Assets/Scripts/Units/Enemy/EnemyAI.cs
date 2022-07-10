@@ -6,16 +6,10 @@ namespace Units.Enemy
 {
     public class EnemyAI : MonoBehaviour
     {
-        public enum EnemyState
-        {
-            Calm,
-            Attack
-        }
-
-        public int contactDamage = 10;
-        public int contactDamageDelay = 1;
+        public int ContactDamage = 10;
+        public int ContactDamageDelay = 1;
     
-        public EnemyState enemyState = EnemyState.Attack;
+        public EnemyState EnemyState = EnemyState.Attack;
 
         private Rigidbody enemyRigidbody;
         private Transform playerTransform;
@@ -37,12 +31,12 @@ namespace Units.Enemy
             playerTransform = playerGameObject.GetComponent<Transform>();
             navAgent = GetComponent<NavMeshAgent>();
 
-            GlobalEventManager.PlayerDeath.AddListener(() => enemyState = EnemyState.Calm);
+            GlobalEventManager.PlayerDeath.AddListener(() => EnemyState = EnemyState.Calm);
         }
 
         private void FixedUpdate()
         {
-            if (enemyState == EnemyState.Attack)
+            if (EnemyState == EnemyState.Attack)
             {
                 MoveToPlayer();
                 DrawForwardRay();
@@ -77,8 +71,8 @@ namespace Units.Enemy
         {
             while (true)
             {
-                health.TakeDamage(contactDamage);
-                yield return new WaitForSeconds(contactDamageDelay);
+                health.TakeDamage(ContactDamage);
+                yield return new WaitForSeconds(ContactDamageDelay);
             }
         }
 
@@ -86,5 +80,11 @@ namespace Units.Enemy
         {
             navAgent.destination = playerTransform.position;
         }
+    }
+
+    public enum EnemyState
+    {
+        Calm,
+        Attack
     }
 }

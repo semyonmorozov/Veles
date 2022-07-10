@@ -6,7 +6,7 @@ namespace Units.Player
 {
     public class PlayerFallRespawner : MonoBehaviour
     {
-        public int waitSecondsUntilUpdateRespawnPosition = 2;
+        public int WaitSecondsUntilUpdateRespawnPosition = 2;
         private int fallDamage = 10;
 
         private Vector3? respawnPosition = null;
@@ -47,7 +47,7 @@ namespace Units.Player
                     respawnPosition = transform.position;
                 }
 
-                yield return new WaitForSeconds(waitSecondsUntilUpdateRespawnPosition);
+                yield return new WaitForSeconds(WaitSecondsUntilUpdateRespawnPosition);
             }
         }
     }

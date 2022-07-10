@@ -2,19 +2,19 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public Transform player;
-    public float cameraPositionX = -15;
-    public float cameraPositionY = 25;
-    public float cameraPositionZ = 0;
+    public Transform Player;
+    public float CameraPositionX = -15;
+    public float CameraPositionY = 25;
+    public float CameraPositionZ = 0;
 
     private void Awake()
     {
-        player = GameObject.FindWithTag("Player").transform;
+        Player = GameObject.FindWithTag("Player").transform;
     }
 
     private void Update() 
     {
-        transform.position = player.transform.position + new Vector3(cameraPositionX, cameraPositionY, cameraPositionZ);
+        transform.position = Player.transform.position + new Vector3(CameraPositionX, CameraPositionY, CameraPositionZ);
     }
 
 }
