@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace World
+namespace UI
 {
     public class RestartButton : MonoBehaviour
     {
