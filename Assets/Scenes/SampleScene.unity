@@ -861,12 +861,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56b993a209df4acba63b5ac68c6ae740, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Endurance: 5
-  Strength: 5
+  Endurance: 3
+  Strength: 3
   Agility: 5
   Intelligence: 5
-  WillPower: 5
-  Luck: 5
+  WillPower: 3
+  Luck: 3
 --- !u!1001 &749013226
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1271,8 +1271,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
-  CameraPositionX: -45
-  CameraPositionY: 80
+  CameraPositionX: -60
+  CameraPositionY: 100
   CameraPositionZ: 0
 --- !u!1001 &1006545595
 PrefabInstance:
