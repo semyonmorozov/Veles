@@ -2,15 +2,17 @@ using System.Collections;
 using System.Threading.Tasks;
 using Units.Enemy;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class SnowBallProjectile : MonoBehaviour
 {
-    public int MoveSpeed = 800;
-    public int LifeTimeSeconds = 2;
+    public float MoveSpeed = 800;
+    public float LifeTimeSeconds = 2;
     public int Damage = 10;
     public float Force = 3;
     public float Size = 3;
+
+    public int Pierce = 0;
+    private int piercedTarget = 0;
 
     private new Rigidbody rigidbody;
     private new Transform transform;
@@ -38,13 +40,18 @@ public class SnowBallProjectile : MonoBehaviour
         var dir = rigidbody.velocity.normalized;
         target.GetComponent<Rigidbody>().AddForce(dir*Force);
         Task.Delay(500);
+
+        piercedTarget++;
+        if (piercedTarget >= Pierce)
+        {
             
-        StartCoroutine(ScheduledDestroy());
+            StartCoroutine(ScheduledDestroy());
+        }
     }
 
     private IEnumerator ScheduledDestroy()
     {
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(0.1f);
         Destroy(gameObject);
     }
 

@@ -19,17 +19,12 @@ namespace Units.Player
 
     public class Controller : MonoBehaviour
     {
-        public int DefaultMoveSpeed = 200;
-        public int MoveSpeedAgilityMultiplier = 100;
-        public int DefaultRotationSpeed = 20;
-        public int RotationSpeedAgilityMultiplier = 10;
-
         public int FallPositionY = 0;
 
         public ControllerState State = ControllerState.ExploreWorld;
         public ControllerType ControllerType = ControllerType.Mouse;
 
-        public Weapon.SpellBase Weapon;
+        public SpellBase Weapon;
 
         private new Rigidbody rigidbody;
         private new Camera camera;
@@ -39,8 +34,8 @@ namespace Units.Player
         private static readonly int MovingTriggerName = Animator.StringToHash("MovingState");
         public float LocVelocityZ;
         public float LocVelocityX;
-        private float Speed => DefaultMoveSpeed + playerStats.Agility * MoveSpeedAgilityMultiplier;
-        private float RotationSpeed => DefaultRotationSpeed + playerStats.Agility * RotationSpeedAgilityMultiplier;
+        private float Speed => 200 + playerStats.Agility *  50;
+        private float RotationSpeed => 20 + playerStats.Agility * 10;
 
         private void Awake()
         {

@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Linq;
 using UnityEngine;
 
 namespace Units.Weapon
@@ -14,6 +13,7 @@ namespace Units.Weapon
     public abstract class SpellBase : MonoBehaviour
     {
         protected virtual float Cooldown => 1;
+        protected virtual float CastTime => 1;
 
         private bool isReloaded = true;
 
@@ -36,7 +36,7 @@ namespace Units.Weapon
 
         private IEnumerator PrepareSpell()
         {
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(CastTime);
             
             animator.SetInteger(CastingTriggerName, (int)CastingState.SuccessCast);
         }
