@@ -1,6 +1,7 @@
 using System;
 using Units.Weapon;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Units.Player
 {
@@ -34,6 +35,7 @@ namespace Units.Player
         private static readonly int MovingTriggerName = Animator.StringToHash("MovingState");
         public float LocVelocityZ;
         public float LocVelocityX;
+        private NavMeshAgent navMeshAgent;
         private float Speed => 200 + playerStats.Agility *  50;
         private float RotationSpeed => 20 + playerStats.Agility * 10;
 
@@ -49,6 +51,7 @@ namespace Units.Player
             Weapon = gameObject.AddComponent<SowBall>();
             SetControllerType();
             animator = GetComponent<Animator>();
+            navMeshAgent = GetComponent<NavMeshAgent>();
         }
 
         private void SetControllerType()

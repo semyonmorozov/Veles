@@ -26,14 +26,14 @@ namespace World
 
         private void SpawnItem(Transform enemyTransform)
         {
-            if (Random.Range(0, 100) >= 50)
+            if (Random.Range(0, 100) >= 100)
             {
                 return;
             }
             
             var item = items[Random.Range(0, items.Length)];
             var position = enemyTransform.position;
-            position.y = 41;
+            position.y += 2;
             Instantiate(item, position, enemyTransform.rotation);
         }
     }
