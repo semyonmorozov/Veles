@@ -1,5 +1,5 @@
 using System;
-using Units.Weapon;
+using Units.Player.Weapon.SnowBall;
 using UnityEngine;
 using UnityEngine.AI;
 

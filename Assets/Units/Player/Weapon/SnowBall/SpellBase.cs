@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace Units.Weapon
+namespace Units.Player.Weapon.SnowBall
 {
     public enum CastingState
     {

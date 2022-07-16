@@ -1,8 +1,7 @@
-﻿using Units.Player;
-using Unity.VisualScripting;
+﻿using Unity.VisualScripting;
 using UnityEngine;
 
-namespace Units.Weapon
+namespace Units.Player.Weapon.SnowBall
 {
     public class SowBall : SpellBase
     {
