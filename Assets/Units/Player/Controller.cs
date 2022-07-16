@@ -36,7 +36,7 @@ namespace Units.Player
         public float LocVelocityZ;
         public float LocVelocityX;
         private NavMeshAgent navMeshAgent;
-        private float Speed => 200 + playerStats.Agility *  50;
+        private float Speed => 100 + playerStats.Agility *  50;
         private float RotationSpeed => 20 + playerStats.Agility * 10;
 
         private void Awake()
