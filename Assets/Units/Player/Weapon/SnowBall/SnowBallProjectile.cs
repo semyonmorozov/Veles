@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Units.Enemies;
 using Units.Enemy;
 using UnityEngine;
 
@@ -12,9 +13,6 @@ namespace Units.Player.Weapon.SnowBall
         public int Damage = 10;
         public float Force = 3;
         public float Size = 3;
-
-        public int Pierce = 0;
-        private int piercedTarget = 0;
 
         private new Rigidbody rigidbody;
         private new Transform transform;
@@ -35,7 +33,6 @@ namespace Units.Player.Weapon.SnowBall
             onePercentOfScale = startScale / 100f;
             
             throwDirection = transform.forward;
-            //collider.isTrigger = true;
         }
 
         private void FixedUpdate()
@@ -63,9 +60,6 @@ namespace Units.Player.Weapon.SnowBall
             if (!target.CompareTag("Enemy"))
                 return;
             target.GetComponent<EnemyHealth>().TakeDamage(Damage);
-            
-            var dir = rigidbody.velocity.normalized;
-            target.GetComponent<Rigidbody>().AddForce(dir*Force);
         }
     
         private IEnumerator EnableCollision()

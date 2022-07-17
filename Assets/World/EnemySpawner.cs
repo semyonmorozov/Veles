@@ -1,42 +1,59 @@
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
-using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
 namespace World
 {
     public class EnemySpawner : MonoBehaviour
     {
+        public GameObject[] Enemies;
+        public Camera mainCamera;
+
         private NavMeshSurface navMeshSurface;
         private GameObject[] spawnPoints;
-        private Object enemyPreph;
 
         private void Awake()
         {
             spawnPoints = GameObject.FindGameObjectsWithTag("EnemySpawnPoint");
-            enemyPreph = Resources.Load("Enemies/Eyebat");
             GlobalEventManager.EnemyDeath.AddListener(SpawnEnemy);
         }
 
-        void Start()
+        private void Start()
         {
             foreach (var spawnPoint in spawnPoints)
             {
+                if (Enemies.Length == 0)
+                    return;
+
                 var spawnPointTransform = spawnPoint.transform;
-                Instantiate(enemyPreph, spawnPointTransform.position, spawnPointTransform.rotation);
+                Instantiate(GetEnemy(), spawnPointTransform.position, spawnPointTransform.rotation);
             }
         }
 
         private void SpawnEnemy(Transform enemyTransform)
         {
-            var spawnPoint = spawnPoints[Random.Range(0,spawnPoints.Length-1)];
-            if (spawnPoint == null)
-            {
+            if (spawnPoints.Length == 0)
                 return;
-            }
+            var spawnPointsBehindScreen = spawnPoints
+                .Select(spawnPoint => (onScreenPosition: GetPositionOnScreen(spawnPoint), spawnPoint))
+                .Where(y => y.onScreenPosition.x < 0 || y.onScreenPosition.y < 0)
+                .Select(p => p.spawnPoint)
+                .ToArray();
+            var spawnPoint = spawnPointsBehindScreen[Random.Range(0, spawnPointsBehindScreen.Length - 1)];
 
             var spawnPointTransform = spawnPoint.transform;
-            Instantiate(enemyPreph, spawnPointTransform.position, spawnPointTransform.rotation);
+            Instantiate(GetEnemy(), spawnPointTransform.position, spawnPointTransform.rotation);
+        }
+
+        private Vector3 GetPositionOnScreen(GameObject x)
+        {
+            return mainCamera.WorldToViewportPoint(x.transform.position);
+        }
+
+        private GameObject GetEnemy()
+        {
+            return Enemies[Random.Range(0, Enemies.Length)];
         }
     }
 }

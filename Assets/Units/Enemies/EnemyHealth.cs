@@ -1,18 +1,18 @@
 using UnityEngine;
 
-namespace Units.Enemy
+namespace Units.Enemies
 {
     public class EnemyHealth : Health
     {
         private Animator animator;
-        private EnemyAI enemyAI;
+        private EnemyAIBase enemyAI;
         private new Collider collider;
 
         protected override void Awake()
         {
             base.Awake();
             animator = GetComponent<Animator>();
-            enemyAI = GetComponent<EnemyAI>();
+            enemyAI = GetComponent<EnemyAIBase>();
             collider = GetComponent<Collider>();
         }
 

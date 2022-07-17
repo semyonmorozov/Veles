@@ -16,7 +16,6 @@ namespace Units.Player.Weapon.SnowBall
         private float Size => 0.5f + playerStats.Intelligence / 8f;
         private float ProjectileMoveSpeed => 200f + playerStats.Strength * 30f;
         private float ProjectileLifeTime => 1f + playerStats.Endurance/1.5f;
-        private int ProjectilePierce => playerStats.Intelligence / 3;
 
         protected override float Cooldown
         {
@@ -53,7 +52,6 @@ namespace Units.Player.Weapon.SnowBall
             snowBallProjectile.Size = Size;
             snowBallProjectile.MoveSpeed = ProjectileMoveSpeed;
             snowBallProjectile.LifeTimeSeconds = ProjectileLifeTime;
-            snowBallProjectile.Pierce = ProjectilePierce;
 
             projectileRigidbody.velocity = playerRigidbody.velocity;
             
