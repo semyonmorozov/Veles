@@ -630,7 +630,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ContactDamage: 10
   PlayerSearchingDistance: 15
-  MovingSound: {fileID: 0}
+  MovingSounds:
+  - {fileID: 8300000, guid: ba81011b3f2d47f43aee75bb05370a29, type: 3}
+  - {fileID: 8300000, guid: 9636ff2ee0a2bd74384a9cc46caa02b1, type: 3}
   EnemyState: 0
   MeleeAttackCooldown: 1
   AttackDistance: 3
