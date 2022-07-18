@@ -5,7 +5,6 @@ namespace Units.Enemies
     public class EnemyHealth : Health
     {
         public AudioClip DeadSound;
-        private Animator animator;
         private EnemyAIBase enemyAI;
         private new Collider collider;
         private AudioSource audioSource;
@@ -13,7 +12,6 @@ namespace Units.Enemies
         protected override void Awake()
         {
             base.Awake();
-            animator = GetComponent<Animator>();
             enemyAI = GetComponent<EnemyAIBase>();
             collider = GetComponent<Collider>();
             audioSource = gameObject.AddComponent<AudioSource>();
@@ -24,7 +22,6 @@ namespace Units.Enemies
         public override void TakeDamage(int damage)
         {
             base.TakeDamage(damage);
-            animator.SetTrigger("Damage");
             if(enemyAI.EnemyState != EnemyState.Dead)
                 enemyAI.EnemyState = EnemyState.Chasing;
         }
@@ -34,7 +31,6 @@ namespace Units.Enemies
             GlobalEventManager.EnemyDeath.Invoke(transform);
             enemyAI.EnemyState = EnemyState.Dead;
             collider.isTrigger = true;
-            animator.SetTrigger("Die");
             audioSource.PlayOneShot(DeadSound);
         }
 

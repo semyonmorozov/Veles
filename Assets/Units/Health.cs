@@ -10,9 +10,12 @@ namespace Units
         public int CurrentHealth;
 
         public bool IsDead() => CurrentHealth == 0;
+        
+        protected Animator animator;
         protected virtual void Awake()
         {
             CurrentHealth = MaxHealth;
+            animator = GetComponent<Animator>();
         }
 
         public virtual void TakeDamage(int damage)
@@ -24,10 +27,12 @@ namespace Units
             if (damage >= CurrentHealth)
             {
                 CurrentHealth = 0;
+                animator.SetTrigger("Die");
                 OnDeath();
             }
             else
             {
+                animator.SetTrigger("Damage");
                 CurrentHealth -= damage;
             }
         }

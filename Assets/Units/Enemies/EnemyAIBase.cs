@@ -43,6 +43,11 @@ namespace Units.Enemies
 
         protected virtual void FixedUpdate()
         {
+            if (playerHealth.IsDead())
+            {
+                StandStill();
+                return;
+            }
             switch (EnemyState)
             {
                 case EnemyState.Calm:

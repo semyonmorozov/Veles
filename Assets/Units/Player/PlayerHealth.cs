@@ -37,8 +37,11 @@ namespace Units.Player
         public override void TakeDamage(int damage)
         {
             base.TakeDamage(damage);
-            audioSource.pitch = Random.Range(0.9f, 1.1f);
-            audioSource.Play();
+            if (!IsDead())
+            {
+                audioSource.pitch = Random.Range(0.9f, 1.1f);
+                audioSource.Play();
+            }
         }
     }
 }
