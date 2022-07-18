@@ -8,8 +8,6 @@ namespace Units.Enemies
     {
         public int ContactDamage = 10;
         public int PlayerSearchingDistance = 15;
-        
-        public AudioClip[] MovingSounds;
 
         public EnemyState EnemyState = EnemyState.Calm;
 
@@ -18,10 +16,7 @@ namespace Units.Enemies
         protected Health playerHealth;
         protected NavMeshAgent navAgent;
         protected Animator animator;
-        private AudioSource movingAudioSource;
-        private IEnumerator playMovingSounds;
-        private bool movingSoundPlaying;
-
+        private EnemyMovingSounds enemyMovingSounds;
 
         protected virtual void Awake()
         {
@@ -31,10 +26,7 @@ namespace Units.Enemies
             navAgent = GetComponent<NavMeshAgent>();
             animator = GetComponent<Animator>();
             
-            movingAudioSource = gameObject.AddComponent<AudioSource>();
-            movingAudioSource.outputAudioMixerGroup = GetComponent<EnemySounds>().Mixer;
-
-            playMovingSounds = PlayMovingSounds();
+            enemyMovingSounds = GetComponent<EnemyMovingSounds>();
 
             navAgent.stoppingDistance = GetAttackDistance() - 1;
 
@@ -68,11 +60,7 @@ namespace Units.Enemies
 
         private void StandStill()
         {
-            if (movingSoundPlaying)
-            {
-                movingSoundPlaying = false;
-                StopCoroutine(playMovingSounds);
-            }
+            enemyMovingSounds.StopMovingSounds();
             navAgent.destination = transform.position;
         }
 
@@ -87,31 +75,12 @@ namespace Units.Enemies
         
         protected virtual void MoveToPlayer()
         {
-            if (!movingSoundPlaying)
-            {
-                movingSoundPlaying = true;
-                StartCoroutine(playMovingSounds);
-            }
+            enemyMovingSounds.PlayMovingSounds();
+            
             navAgent.destination = playerTransform.position;
         }
 
         protected abstract int GetAttackDistance();
-
-        private IEnumerator PlayMovingSounds()
-        {
-            while (true)
-            {
-                if (MovingSounds.Length > 0)
-                {
-                    movingAudioSource.pitch = Random.Range(0.9f, 1.1f);
-                    var randomMovingSound = MovingSounds[Random.Range(0,MovingSounds.Length)];
-                    Debug.Log(randomMovingSound.length);
-                    movingAudioSource.PlayOneShot(randomMovingSound);
-                    yield return new WaitForSeconds(randomMovingSound.length);
-                }
-                yield return new WaitForSeconds(Random.Range(0,2));
-            }
-        }
     }
 
     public enum EnemyState

@@ -16,7 +16,7 @@ namespace Units.Enemies
             collider = GetComponent<Collider>();
             audioSource = gameObject.AddComponent<AudioSource>();
             audioSource = gameObject.AddComponent<AudioSource>();
-            audioSource.outputAudioMixerGroup = GetComponent<EnemySounds>().Mixer;
+            audioSource.outputAudioMixerGroup = GetComponent<EnemyMovingSounds>().Mixer;
         }
 
         public override void TakeDamage(int damage)

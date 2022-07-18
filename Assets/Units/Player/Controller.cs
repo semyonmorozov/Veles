@@ -20,6 +20,7 @@ namespace Units.Player
 
     public class Controller : MonoBehaviour
     {
+        private const int MovingAnimationSensitivity = 25;
         public int FallPositionY = 0;
 
         public ControllerState State = ControllerState.ExploreWorld;
@@ -31,12 +32,14 @@ namespace Units.Player
         private new Camera camera;
         private PlayerStats playerStats;
         private Animator animator;
-        
+
         private static readonly int MovingTriggerName = Animator.StringToHash("MovingState");
-        public float LocVelocityZ;
-        public float LocVelocityX;
+
         private NavMeshAgent navMeshAgent;
-        private float Speed => 100 + playerStats.Agility *  50;
+        private PlayerSounds playerSounds;
+
+
+        private float Speed => 100 + playerStats.Agility * 50;
         private float RotationSpeed => 20 + playerStats.Agility * 10;
 
         private void Awake()
@@ -52,6 +55,8 @@ namespace Units.Player
             SetControllerType();
             animator = GetComponent<Animator>();
             navMeshAgent = GetComponent<NavMeshAgent>();
+
+            playerSounds = GetComponent<PlayerSounds>();
         }
 
         private void SetControllerType()
@@ -76,10 +81,10 @@ namespace Units.Player
                     MovePlayer();
                     Rotate();
                     DrawPlayerForwardRay();
-                    AnimateMoving();
                     break;
             }
         }
+
         public void FinishCastingAnimation() //вызывается из анимации окончания атаки
         {
             Weapon.FinishCasting();
@@ -153,35 +158,46 @@ namespace Units.Player
             var horizontalDelta = Input.GetAxis("Horizontal") * Speed * Time.fixedDeltaTime;
             var verticalDelta = Input.GetAxis("Vertical") * Speed * Time.fixedDeltaTime;
 
-            rigidbody.velocity = new Vector3(verticalDelta, rigidbody.velocity.y, -horizontalDelta);
+            if (Math.Abs(horizontalDelta) > 0.1f || Math.Abs(verticalDelta) > 0.1f)
+            {
+                playerSounds.PlayMovingSounds();
+                rigidbody.velocity = new Vector3(verticalDelta, rigidbody.velocity.y, -horizontalDelta);
+            }
+            else
+            {
+                playerSounds.StopMovingSounds();
+            }
+            AnimateMoving(horizontalDelta, verticalDelta);
         }
 
-        private void AnimateMoving()
+        private void AnimateMoving(float horizontalDelta, float verticalDelta)
         {
-            var ninetyDegreesQuaternion = Quaternion.AngleAxis(90, Vector3.up);
-            var locVelocity = ninetyDegreesQuaternion * transform.InverseTransformDirection(rigidbody.velocity);
-            LocVelocityZ = locVelocity.z;
-            var horizontalDelta = LocVelocityZ;
-            LocVelocityX = locVelocity.x;
-            var verticalDelta = LocVelocityX;
-            var newMovingState = horizontalDelta switch
+            var direction = new Vector3(-horizontalDelta,0, -verticalDelta);
+            
+            var locVelocity = transform.InverseTransformDirection(direction).normalized;
+
+            var normalizedHorizontalDelta = (int)(locVelocity.z * 100);
+
+            var normalizedVerticalDelta = (int)(locVelocity.x * 100);
+
+            var newMovingState = normalizedHorizontalDelta switch
             {
-                > 5 => verticalDelta switch
+                > MovingAnimationSensitivity => normalizedVerticalDelta switch
                 {
-                    > 5 => MovingState.RunRight,
-                    < -5 => MovingState.RunBackwardRight,
+                    > MovingAnimationSensitivity => MovingState.RunRight,
+                    < -MovingAnimationSensitivity => MovingState.RunBackwardRight,
                     _ => MovingState.StrafeRight
                 },
-                < -5 => verticalDelta switch
+                < -MovingAnimationSensitivity => normalizedVerticalDelta switch
                 {
-                    > 5 => MovingState.RunLeft,
-                    < -5 => MovingState.RunBackwardLeft,
+                    > MovingAnimationSensitivity => MovingState.RunLeft,
+                    < -MovingAnimationSensitivity => MovingState.RunBackwardLeft,
                     _ => MovingState.StrafeLeft
                 },
-                _ => verticalDelta switch
+                _ => normalizedVerticalDelta switch
                 {
-                    > 1 => MovingState.RunForward,
-                    < -1 => MovingState.RunBackward,
+                    > 10 => MovingState.RunForward,
+                    < -10 => MovingState.RunBackward,
                     _ => MovingState.Idle
                 }
             };
