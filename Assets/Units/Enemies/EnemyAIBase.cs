@@ -7,6 +7,8 @@ namespace Units.Enemies
     {
         public int ContactDamage = 10;
         public int PlayerSearchingDistance = 15;
+        
+        public AudioClip MovingSound;
 
         public EnemyState EnemyState = EnemyState.Calm;
 
@@ -15,6 +17,7 @@ namespace Units.Enemies
         protected Health playerHealth;
         protected NavMeshAgent navAgent;
         protected Animator animator;
+        private AudioSource audioSource;
 
 
         protected virtual void Awake()
@@ -24,6 +27,9 @@ namespace Units.Enemies
             playerTransform = playerGameObject.GetComponent<Transform>();
             navAgent = GetComponent<NavMeshAgent>();
             animator = GetComponent<Animator>();
+            
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.outputAudioMixerGroup = GetComponent<EnemySounds>().Mixer;
 
             navAgent.stoppingDistance = GetAttackDistance() - 1;
 

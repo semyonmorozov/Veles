@@ -15,7 +15,7 @@ namespace Units.Player.Weapon.SnowBall
         private float Force => -1f + playerStats.WillPower * 20f;
         private float Size => 0.5f + playerStats.Intelligence / 8f;
         private float ProjectileMoveSpeed => 200f + playerStats.Strength * 30f;
-        private float ProjectileLifeTime => 1f + playerStats.Endurance/1.5f;
+        private float ProjectileLifeTime => 1f + playerStats.Endurance / 1.5f;
 
         protected override float Cooldown
         {
@@ -40,7 +40,8 @@ namespace Units.Player.Weapon.SnowBall
             base.Awake();
             playerStats = GetComponent<PlayerStats>();
             playerRigidbody = GetComponent<Rigidbody>();
-            Projectile = Resources.Load("SnowBallProjectile");
+            Projectile = Resources.Load("Weapon/SnowBall/SnowBallProjectile");
+            CastSound = (AudioClip)Resources.Load("Weapon/SnowBall/SnowBallCast");
             projectileRigidbody = Projectile.GetComponent<Rigidbody>();
             snowBallProjectile = Projectile.GetComponent<SnowBallProjectile>();
         }
@@ -54,7 +55,7 @@ namespace Units.Player.Weapon.SnowBall
             snowBallProjectile.LifeTimeSeconds = ProjectileLifeTime;
 
             projectileRigidbody.velocity = playerRigidbody.velocity;
-            
+
             var playerTransform = transform;
             var playerTransformRotation = playerTransform.rotation;
             var playerTransformPosition = playerTransform.position;

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace Units.Player.Weapon.SnowBall
 {
@@ -11,9 +12,10 @@ namespace Units.Player.Weapon.SnowBall
     }
 
     public abstract class SpellBase : MonoBehaviour
-    {
-        protected virtual float Cooldown => 1;
+    { protected virtual float Cooldown => 1;
         protected virtual float CastTime => 1;
+
+        protected AudioClip CastSound;
 
         private bool isReloaded = true;
 
@@ -21,10 +23,13 @@ namespace Units.Player.Weapon.SnowBall
         private Coroutine prepareSpell;
 
         private Animator animator;
+        private AudioSource audioSource;
 
         protected void Awake()
         {
             animator = GetComponent<Animator>();
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.outputAudioMixerGroup = GetComponent<PlayerSounds>().SpellMixer;
         }
 
         public void FinishCasting()
@@ -36,6 +41,7 @@ namespace Units.Player.Weapon.SnowBall
 
         private IEnumerator PrepareSpell()
         {
+            audioSource.PlayOneShot(CastSound);
             yield return new WaitForSeconds(CastTime);
             
             animator.SetInteger(CastingTriggerName, (int)CastingState.SuccessCast);
@@ -55,6 +61,7 @@ namespace Units.Player.Weapon.SnowBall
             if (prepareSpell == null) 
                 return;
             
+            audioSource.Stop();
             StopCoroutine(prepareSpell);
             animator.SetInteger(CastingTriggerName, (int)CastingState.NonCasting);
             prepareSpell = null;

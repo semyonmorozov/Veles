@@ -10,12 +10,14 @@ namespace Units.Player
         public override int MaxHealth => DefaultMaxHealth + playerStats.Endurance * MaxHealthEnduranceMultiplier;
 
         private PlayerStats playerStats;
+        private AudioSource audioSource;
 
         protected override void Awake()
         {
             playerStats = GetComponent<PlayerStats>();
             base.Awake();
             StartCoroutine(Regeneration());
+            audioSource = GetComponent<AudioSource>();
         }
 
         private IEnumerator Regeneration()
@@ -30,6 +32,13 @@ namespace Units.Player
         protected override void OnDeath()
         {
             GlobalEventManager.PlayerDeath.Invoke();
+        }
+
+        public override void TakeDamage(int damage)
+        {
+            base.TakeDamage(damage);
+            
+            audioSource.Play();
         }
     }
 }
