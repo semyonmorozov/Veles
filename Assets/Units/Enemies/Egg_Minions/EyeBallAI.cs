@@ -1,8 +1,7 @@
 ﻿using System.Collections;
-using Units.Enemies;
 using UnityEngine;
 
-namespace Units.Enemy
+namespace Units.Enemies.Egg_Minions
 {
     public class EyeBallAI : EnemyAIBase
     {

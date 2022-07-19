@@ -16,7 +16,7 @@ namespace Units.Enemies
         protected Health playerHealth;
         protected NavMeshAgent navAgent;
         protected Animator animator;
-        private EnemyMovingSounds enemyMovingSounds;
+        private UnitMovingSound enemyMovingSounds;
 
         protected virtual void Awake()
         {
@@ -26,7 +26,7 @@ namespace Units.Enemies
             navAgent = GetComponent<NavMeshAgent>();
             animator = GetComponent<Animator>();
             
-            enemyMovingSounds = GetComponent<EnemyMovingSounds>();
+            enemyMovingSounds = GetComponent<UnitMovingSound>();
 
             navAgent.stoppingDistance = GetAttackDistance() - 1;
 

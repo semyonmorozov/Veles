@@ -62,7 +62,7 @@ AudioMixerGroupController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PlayerSpell
+  m_Name: PlayerAttack
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: 80190a75ed3a89a4bac943fb256b0843
   m_Children: []
@@ -167,13 +167,13 @@ AudioMixerSnapshotController:
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: 49def3a096371d446a02bbfadeee93b2
   m_FloatValues:
-    eef6e86061ad08547a7f683595d68a91: -29.519157
+    eef6e86061ad08547a7f683595d68a91: -19.928473
     d719a5806623ba8469a8b417e0fe697e: 1
-    17e72880ac6911a45b25beeb3dffe97c: -0.037667945
-    30131772ab923de459a865b39aa143b8: 0
-    265806f20d2062a4bb9957d75a6dc914: -5.145858e-11
-    396ade1411405be4e9abb373bcfa8adb: -19.928478
-    f68cc26d879fbb64599e0e33b3942c53: -7.8940816
+    17e72880ac6911a45b25beeb3dffe97c: 0.23288241
+    30131772ab923de459a865b39aa143b8: -0.025776558
+    265806f20d2062a4bb9957d75a6dc914: -0.1668526
+    396ade1411405be4e9abb373bcfa8adb: -9.833291
+    f68cc26d879fbb64599e0e33b3942c53: -0.08374829
   m_TransitionOverrides: {}
 --- !u!243 &3577206920010737402
 AudioMixerGroupController:

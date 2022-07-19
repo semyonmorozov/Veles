@@ -11,11 +11,13 @@ namespace Units.Enemies.Skeleton
         protected override int GetAttackDistance() => AttackDistance;
         
         private bool meleeAttackIsReady;
+        private UnitAttackSound unitAttackSound;
 
         protected override void Awake()
         {
             base.Awake();
             meleeAttackIsReady = true;
+            unitAttackSound = GetComponent<UnitAttackSound>();
         }
 
         protected override void FixedUpdate()
@@ -39,6 +41,8 @@ namespace Units.Enemies.Skeleton
 
         public void AttackAnimationFinished()
         {
+            unitAttackSound.PlayAttackSound();
+            
             if (PlayerInAttackDistance())
             {
                 playerHealth.TakeDamage(10);

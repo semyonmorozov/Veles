@@ -510,10 +510,12 @@ GameObject:
   - component: {fileID: 3475082436318143512}
   - component: {fileID: -3620215144158110202}
   - component: {fileID: -9067099812831491356}
-  - component: {fileID: 1052224860908864110}
   - component: {fileID: 5380713626178180569}
   - component: {fileID: 7936658194001659813}
   - component: {fileID: 7181123323942729749}
+  - component: {fileID: 4560486453522528646}
+  - component: {fileID: 1438584512957619686}
+  - component: {fileID: 8484848625030137641}
   m_Layer: 0
   m_Name: Skeleton
   m_TagString: Enemy
@@ -589,23 +591,6 @@ CapsuleCollider:
   m_Height: 0.17
   m_Direction: 1
   m_Center: {x: 0, y: 0.08, z: 0}
---- !u!114 &1052224860908864110
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 555989384304899385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51e66c6e4d584ca0894c03823c6eb598, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MovingMixer: {fileID: 3577206920010737402, guid: 3cdabb18ffa74f742a0f148d952c4b44, type: 2}
-  MovingSounds:
-  - {fileID: 8300000, guid: ba81011b3f2d47f43aee75bb05370a29, type: 3}
-  - {fileID: 8300000, guid: 9636ff2ee0a2bd74384a9cc46caa02b1, type: 3}
-  Mixer: {fileID: 3577206920010737402, guid: 3cdabb18ffa74f742a0f148d952c4b44, type: 2}
 --- !u!114 &5380713626178180569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -659,6 +644,54 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &4560486453522528646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 555989384304899385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9de7d340ace426f895e6b20d18a7773, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttackMixer: {fileID: 3577206920010737402, guid: 3cdabb18ffa74f742a0f148d952c4b44, type: 2}
+  AttackSounds:
+  - {fileID: 8300000, guid: f162dc80a9686b74699c9cce158bf890, type: 3}
+  - {fileID: 8300000, guid: 0c383181a3614674c8dd41ca89a3e5da, type: 3}
+  - {fileID: 8300000, guid: 5788e2303f024aa429f6897ddeb4aca4, type: 3}
+  AttackAudioSource: {fileID: 0}
+--- !u!114 &1438584512957619686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 555989384304899385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2fe6edab056439d9840231131c898f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MovingMixer: {fileID: 3577206920010737402, guid: 3cdabb18ffa74f742a0f148d952c4b44, type: 2}
+  MovingSounds:
+  - {fileID: 8300000, guid: ba81011b3f2d47f43aee75bb05370a29, type: 3}
+  - {fileID: 8300000, guid: 9636ff2ee0a2bd74384a9cc46caa02b1, type: 3}
+  MaxSoundDelay: 3
+--- !u!114 &8484848625030137641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 555989384304899385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0460ca414ce04aea91ce382bb17a53b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StateMixer: {fileID: 3577206920010737402, guid: 3cdabb18ffa74f742a0f148d952c4b44, type: 2}
 --- !u!1 &555989384339167384
 GameObject:
   m_ObjectHideFlags: 0

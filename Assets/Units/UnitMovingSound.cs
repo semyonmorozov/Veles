@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Audio;
 
-namespace Units.Enemies
+namespace Units
 {
     public class UnitMovingSound : MonoBehaviour
     {
@@ -11,7 +11,7 @@ namespace Units.Enemies
         public AudioClip[] MovingSounds;
         
         protected AudioSource MovingAudioSource;
-        protected int MaxSoundDelay = 2;
+        public int MaxSoundDelay = 2;
         private IEnumerator playMovingSounds;
         private bool movingSoundPlaying = false;
 

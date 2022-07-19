@@ -29,7 +29,7 @@ namespace Units.Player.Weapon.SnowBall
         {
             animator = GetComponent<Animator>();
             audioSource = gameObject.AddComponent<AudioSource>();
-            audioSource.outputAudioMixerGroup = GetComponent<PlayerSounds>().SpellMixer;
+            audioSource.outputAudioMixerGroup = GetComponent<UnitAttackSound>().AttackMixer;
         }
 
         public void FinishCasting()

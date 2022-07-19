@@ -35,9 +35,7 @@ namespace Units.Player
 
         private static readonly int MovingTriggerName = Animator.StringToHash("MovingState");
 
-        private NavMeshAgent navMeshAgent;
-        private PlayerSounds playerSounds;
-
+        private UnitMovingSound playerSounds;
 
         private float Speed => 100 + playerStats.Agility * 50;
         private float RotationSpeed => 20 + playerStats.Agility * 10;
@@ -54,9 +52,8 @@ namespace Units.Player
             Weapon = gameObject.AddComponent<SowBall>();
             SetControllerType();
             animator = GetComponent<Animator>();
-            navMeshAgent = GetComponent<NavMeshAgent>();
 
-            playerSounds = GetComponent<PlayerSounds>();
+            playerSounds = GetComponent<UnitMovingSound>();
         }
 
         private void SetControllerType()

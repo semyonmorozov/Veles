@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using Units.Enemies;
-using Units.Enemy;
 using UnityEngine;
 
 namespace Units.Player.Weapon.SnowBall
