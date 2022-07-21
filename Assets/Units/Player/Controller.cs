@@ -77,7 +77,6 @@ namespace Units.Player
                     SendEventIfPlayerFell();
                     MovePlayer();
                     Rotate();
-                    DrawPlayerForwardRay();
                     break;
             }
         }
@@ -112,13 +111,6 @@ namespace Units.Player
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-        }
-
-        private void DrawPlayerForwardRay()
-        {
-            var playerTransform = transform;
-            var forward = playerTransform.TransformDirection(Vector3.forward) * 10;
-            Debug.DrawRay(playerTransform.position, forward, Color.green);
         }
 
         private Vector3 GetMousePosition()
