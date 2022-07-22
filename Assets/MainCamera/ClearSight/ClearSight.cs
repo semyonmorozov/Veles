@@ -1,19 +1,15 @@
-﻿using System;
-using Unity.VisualScripting;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Units.Player.ClearSight
+namespace MainCamera.ClearSight
 {
     public class ClearSight : MonoBehaviour
     {
-        public Material TransparentMaterial = null;
-        public float FadeInTimeout = 0.6f;
-        public float FadeOutTimeout = 0.2f;
+        public float FadeInSpeed = 0.6f;
+        public float FadeOutSpeed = 0.2f;
         public float TargetTransparency = 0.3f;
         public LayerMask LayerMask;
         public int Radius = 10;
 
-        public TerrainData terrain;
         
         private GameObject player;
 
@@ -24,30 +20,31 @@ namespace Units.Player.ClearSight
 
         private void FixedUpdate()
         {
-            var colliders = Physics.OverlapCapsule(transform.position, player.transform.position, Radius, LayerMask);
-            foreach (var collider in colliders)
+            var sightColliders = Physics.OverlapCapsule(transform.position, player.transform.position, Radius, LayerMask);
+            foreach (var sightCollider in sightColliders)
             {
-                HandleCollision(collider);
+                var componentsInChildren = sightCollider.gameObject.GetComponentsInChildren<Renderer>();
+                    foreach (var lodRenderer in componentsInChildren)
+                    {
+                        HandleCollision(lodRenderer);
+                    }
+                HandleCollision(sightCollider.gameObject.GetComponent<Renderer>());
             }
         }
 
-        private void HandleCollision(Component other)
+        private void HandleCollision(Component hitComponent)
         {
-            Debug.Log(other.name);
-            var hitRenderer = other.gameObject.GetComponent<Renderer>();
-            if (hitRenderer == null)
+            if (hitComponent == null)
             {
                 return;
             }
 
-            // TODO: maybe implement here a check for GOs that should not be affected like the player
-            var autoTransparentScript = hitRenderer.GetComponent<AutoTransparent>();
+            var autoTransparentScript = hitComponent.GetComponent<AutoTransparent>();
             if (autoTransparentScript == null)
             {
-                autoTransparentScript = hitRenderer.gameObject.AddComponent<AutoTransparent>();
-                autoTransparentScript.TransparentMaterial = TransparentMaterial;
-                autoTransparentScript.FadeInTimeout = FadeInTimeout;
-                autoTransparentScript.FadeOutTimeout = FadeOutTimeout;
+                autoTransparentScript = hitComponent.gameObject.AddComponent<AutoTransparent>();
+                autoTransparentScript.FadeInSpeed = FadeInSpeed;
+                autoTransparentScript.FadeOutSpeed = FadeOutSpeed;
                 autoTransparentScript.TargetTransparency = TargetTransparency;
             }
 
