@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
@@ -8,7 +10,11 @@ namespace World
     public class EnemySpawner : MonoBehaviour
     {
         public GameObject[] Enemies;
-        public Camera mainCamera;
+        public Camera MainCamera;
+        public float EnemySpawnChance = 0f;
+        public float EnemySpawnChanceRisingCoefficient = 10000f;
+        public int SpawnTimeout = 1;
+        public float MaxChance = 0.25f;
 
         private NavMeshSurface navMeshSurface;
         private GameObject[] spawnPoints;
@@ -29,9 +35,34 @@ namespace World
                 var spawnPointTransform = spawnPoint.transform;
                 Instantiate(GetEnemy(), spawnPointTransform.position, spawnPointTransform.rotation);
             }
+
+            StartCoroutine(SpawnByTime());
         }
 
-        private void SpawnEnemy(Transform enemyTransform)
+        private IEnumerator SpawnByTime()
+        {
+            while (true)
+            {
+                
+                if (EnemySpawnChance <= MaxChance)
+                {
+                    EnemySpawnChance = Time.realtimeSinceStartup / EnemySpawnChanceRisingCoefficient;
+                    if (EnemySpawnChance>MaxChance)
+                    {
+                        EnemySpawnChance = MaxChance;
+                    }
+                }
+
+                if (Random.Range(0, 100) <= (EnemySpawnChance * 100))
+                {
+                    SpawnEnemy();
+                }
+
+                yield return new WaitForSeconds(SpawnTimeout);
+            }
+        }
+
+        private void SpawnEnemy(Transform enemyTransform = null)
         {
             if (spawnPoints.Length == 0)
                 return;
@@ -48,7 +79,7 @@ namespace World
 
         private Vector3 GetPositionOnScreen(GameObject x)
         {
-            return mainCamera.WorldToViewportPoint(x.transform.position);
+            return MainCamera.WorldToViewportPoint(x.transform.position);
         }
 
         private GameObject GetEnemy()

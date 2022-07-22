@@ -26,14 +26,8 @@ namespace World.Terrains
             foreach (var tree in terrainData.treeInstances)
             {
                 var position = new Vector3(tree.position.x * width, tree.position.y * y, tree.position.z * height);
-                
-                
-                
                 var prefab = trees[tree.prototypeIndex].prefab;
-                //var prefabTree = prefab.GetComponent<Tree>();
                 var scale = new Vector3(tree.widthScale, tree.heightScale, tree.widthScale);
-                //tree.color
-                    //prefab.
                 prefab.transform.localScale = scale;
                 var rotation = Quaternion.Euler(0f,Mathf.Rad2Deg*tree.rotation,0f);
                 Instantiate(prefab, position, rotation, allTrees.transform);

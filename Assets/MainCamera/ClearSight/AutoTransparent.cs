@@ -54,7 +54,7 @@ namespace MainCamera.ClearSight
 
             foreach (var material in materialsList)
             {
-                material.SetColor(Color, UnityEngine.Color.white);
+                material.SetColor(Color, UnityEngine.Color.black);
 
                 material.shader = transparentShader;
             }
@@ -74,7 +74,6 @@ namespace MainCamera.ClearSight
                 {
                     if (currentTransparency > TargetTransparency)
                     {
-                        Debug.Log("!");
                         currentTransparency -= FadeOutSpeed * Time.fixedDeltaTime;
                     }
                 }
