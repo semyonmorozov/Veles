@@ -617,7 +617,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 570f2c9099e94d6393075b5c716a09fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ContactDamage: 10
+  ContactDamage: 50
   PlayerSearchingDistance: 15
   EnemyState: 0
   MeleeAttackCooldown: 1

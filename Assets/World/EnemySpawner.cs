@@ -11,16 +11,19 @@ namespace World
     {
         public GameObject[] Enemies;
         public Camera MainCamera;
-        public float EnemySpawnChance = 0f;
-        public float EnemySpawnChanceRisingCoefficient = 10000f;
+        public float CurrentSpawnChance = 0f;
+        public float TimeRisingCoefficient = 10000f;
         public int SpawnTimeout = 1;
         public float MaxChance = 0.25f;
+        public int MaxEnemiesCount = 50;
 
         private NavMeshSurface navMeshSurface;
         private GameObject[] spawnPoints;
+        private Transform enemiesTransform;
 
         private void Awake()
         {
+            enemiesTransform = new GameObject("Enemies").transform;
             spawnPoints = GameObject.FindGameObjectsWithTag("EnemySpawnPoint");
             GlobalEventManager.EnemyDeath.AddListener(SpawnEnemy);
         }
@@ -33,7 +36,7 @@ namespace World
                     return;
 
                 var spawnPointTransform = spawnPoint.transform;
-                Instantiate(GetEnemy(), spawnPointTransform.position, spawnPointTransform.rotation);
+                Instantiate(GetEnemy(), spawnPointTransform.position, spawnPointTransform.rotation, enemiesTransform);
             }
 
             StartCoroutine(SpawnByTime());
@@ -44,16 +47,16 @@ namespace World
             while (true)
             {
                 
-                if (EnemySpawnChance <= MaxChance)
+                if (CurrentSpawnChance <= MaxChance)
                 {
-                    EnemySpawnChance = Time.realtimeSinceStartup / EnemySpawnChanceRisingCoefficient;
-                    if (EnemySpawnChance>MaxChance)
+                    CurrentSpawnChance = Time.realtimeSinceStartup / TimeRisingCoefficient;
+                    if (CurrentSpawnChance > MaxChance)
                     {
-                        EnemySpawnChance = MaxChance;
+                        CurrentSpawnChance = MaxChance;
                     }
                 }
 
-                if (Random.Range(0, 100) <= (EnemySpawnChance * 100))
+                if (Random.Range(0, 100) <= (CurrentSpawnChance * 100) && enemiesTransform.childCount < MaxEnemiesCount)
                 {
                     SpawnEnemy();
                 }
@@ -74,7 +77,7 @@ namespace World
             var spawnPoint = spawnPointsBehindScreen[Random.Range(0, spawnPointsBehindScreen.Length - 1)];
 
             var spawnPointTransform = spawnPoint.transform;
-            Instantiate(GetEnemy(), spawnPointTransform.position, spawnPointTransform.rotation);
+            Instantiate(GetEnemy(), spawnPointTransform.position, spawnPointTransform.rotation, enemiesTransform);
         }
 
         private Vector3 GetPositionOnScreen(GameObject x)
