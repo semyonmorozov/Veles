@@ -29,7 +29,7 @@ namespace Units.Enemies.Egg_Minions
                 return;
             
             animator.SetTrigger("Attack");
-            playerHealth.TakeDamage(ContactDamage);
+            playerHealth.TakeDamage(AttackDamage);
             StartCoroutine(StartCooldownOfMeleeAttack());
         }
 

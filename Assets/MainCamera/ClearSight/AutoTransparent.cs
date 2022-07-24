@@ -30,7 +30,7 @@ namespace MainCamera.ClearSight
 
         private void Awake()
         {
-            transparentShader = Shader.Find("Transparent/Diffuse");
+            transparentShader = Shader.Find("Universal Render Pipeline/Simple Lit");
             renderer = GetComponent<Renderer>();
 
             var distinctMaterials = renderer.materials.Distinct().ToArray();
@@ -55,8 +55,8 @@ namespace MainCamera.ClearSight
             foreach (var material in materialsList)
             {
                 material.SetColor(Color, UnityEngine.Color.black);
-
                 material.shader = transparentShader;
+                material.EnableKeyword("_SURFACE_TYPE_TRANSPARENT");
             }
         }
 
@@ -80,10 +80,8 @@ namespace MainCamera.ClearSight
                 else
                 {
                     currentTransparency += FadeInSpeed * Time.fixedDeltaTime;
-                    if (Math.Abs(originalTransparency - currentTransparency) > TargetTransparency)
-                    {
+                    if (Math.Abs(originalTransparency - currentTransparency) > 0)
                         transparencyReturnedToOriginal = false;
-                    }
                 }
 
                 color.a = currentTransparency;
