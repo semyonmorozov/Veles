@@ -10,6 +10,6 @@ namespace Units.Player
         public int Intelligence = 5;
         public int WillPower = 5;
         public int Luck = 5;
-        private int max = 10;
+        //private int max = 10;
     }
 }

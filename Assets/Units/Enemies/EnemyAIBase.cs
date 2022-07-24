@@ -6,7 +6,7 @@ namespace Units.Enemies
 {
     public abstract class EnemyAIBase : MonoBehaviour
     {
-        public int ContactDamage = 10;
+        public int AttackDamage = 10;
         public int PlayerSearchingDistance = 15;
 
         public EnemyState EnemyState = EnemyState.Calm;
@@ -78,6 +78,12 @@ namespace Units.Enemies
             enemyMovingSounds.PlayMovingSounds();
             
             navAgent.destination = playerTransform.position;
+            
+            var distance = Vector3.Distance(playerTransform.position,transform.position);
+            if (distance > PlayerSearchingDistance * 1.5)
+            {
+                EnemyState = EnemyState.Calm;
+            }
         }
 
         protected abstract int GetAttackDistance();

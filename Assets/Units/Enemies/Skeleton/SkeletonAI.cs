@@ -24,7 +24,7 @@ namespace Units.Enemies.Skeleton
         {
             if (EnemyState == EnemyState.Chasing && meleeAttackIsReady)
             {
-                if (PlayerInAttackDistance())
+                if (PlayerInAttackDistance(GetAttackDistance()*0.75f))
                 {
                     EnemyState = EnemyState.Attack;
                     animator.SetTrigger("Attack");
@@ -34,9 +34,10 @@ namespace Units.Enemies.Skeleton
             base.FixedUpdate();
         }
 
-        private bool PlayerInAttackDistance()
+        private bool PlayerInAttackDistance(float? distanse = null)
         {
-            return Vector3.Distance(playerTransform.position, transform.position) <= GetAttackDistance();
+            var attackDistance = distanse ?? GetAttackDistance();
+            return Vector3.Distance(playerTransform.position, transform.position) <= attackDistance;
         }
 
         public void AttackAnimationFinished()
@@ -45,7 +46,7 @@ namespace Units.Enemies.Skeleton
             
             if (PlayerInAttackDistance())
             {
-                playerHealth.TakeDamage(10);
+                playerHealth.TakeDamage(AttackDamage);
             }
 
             EnemyState = EnemyState.Chasing;
