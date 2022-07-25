@@ -39,7 +39,7 @@ MonoBehaviour:
   m_AdditionalLightsShadowmapResolution: 2048
   m_AdditionalLightsShadowResolutionTierLow: 128
   m_AdditionalLightsShadowResolutionTierMedium: 128
-  m_AdditionalLightsShadowResolutionTierHigh: 512
+  m_AdditionalLightsShadowResolutionTierHigh: 128
   m_ReflectionProbeBlending: 0
   m_ReflectionProbeBoxProjection: 0
   m_ShadowDistance: 110
