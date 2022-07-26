@@ -130,10 +130,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1854961046, guid: 019bde0776b4dd6449695c8d1c9e8d53, type: 3}
-      propertyPath: m_BounceIntensity
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2838008302997403939, guid: 019bde0776b4dd6449695c8d1c9e8d53, type: 3}
       propertyPath: m_Name
       value: Player
@@ -182,14 +178,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8557777677232119125, guid: 019bde0776b4dd6449695c8d1c9e8d53, type: 3}
-      propertyPath: m_Intensity
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8557777677232119125, guid: 019bde0776b4dd6449695c8d1c9e8d53, type: 3}
-      propertyPath: m_BounceIntensity
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 019bde0776b4dd6449695c8d1c9e8d53, type: 3}
 --- !u!1 &55147559
@@ -233,7 +221,7 @@ MonoBehaviour:
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 31
-  m_UseGeometry: 0
+  m_UseGeometry: 1
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
   m_IgnoreNavMeshObstacle: 1
@@ -719,31 +707,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6381119189979012837, guid: 41ff051357b737c4f99edc78586aad3c, type: 3}
   m_PrefabInstance: {fileID: 70040555}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &259715463 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1854961044, guid: 019bde0776b4dd6449695c8d1c9e8d53, type: 3}
-  m_PrefabInstance: {fileID: 42907646}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &259715466
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 259715463}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Version: 1
-  m_UsePipelineSettings: 1
-  m_AdditionalLightsShadowResolutionTier: 2
-  m_LightLayerMask: 1
-  m_CustomShadowLayers: 0
-  m_ShadowLayerMask: 1
-  m_LightCookieSize: {x: 1, y: 1}
-  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!4 &283456762 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6381119189979012837, guid: 41ff051357b737c4f99edc78586aad3c, type: 3}
@@ -4797,31 +4760,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6381119189979012837, guid: 41ff051357b737c4f99edc78586aad3c, type: 3}
   m_PrefabInstance: {fileID: 509967516}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1509881920 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 77896233850271212, guid: 019bde0776b4dd6449695c8d1c9e8d53, type: 3}
-  m_PrefabInstance: {fileID: 42907646}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1509881923
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1509881920}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Version: 1
-  m_UsePipelineSettings: 1
-  m_AdditionalLightsShadowResolutionTier: 2
-  m_LightLayerMask: 1
-  m_CustomShadowLayers: 0
-  m_ShadowLayerMask: 1
-  m_LightCookieSize: {x: 1, y: 1}
-  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!4 &1529802307 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6381119189979012837, guid: 41ff051357b737c4f99edc78586aad3c, type: 3}

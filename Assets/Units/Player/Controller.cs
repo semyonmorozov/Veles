@@ -1,4 +1,7 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using Units.Player.Weapon;
 using Units.Player.Weapon.SnowBall;
 using UnityEngine;
 using UnityEngine.AI;
@@ -36,6 +39,7 @@ namespace Units.Player
         private static readonly int MovingTriggerName = Animator.StringToHash("MovingState");
 
         private UnitMovingSound playerSounds;
+        private IEnumerator switchWeapon;
 
         private float Speed => 100 + playerStats.Agility * 50;
         private float RotationSpeed => 20 + playerStats.Agility * 10;
@@ -48,8 +52,8 @@ namespace Units.Player
             playerStats = GetComponent<PlayerStats>();
 
             GlobalEventManager.PlayerDeath.AddListener(() => State = ControllerState.InMenu);
-
-            Weapon = gameObject.AddComponent<SowBall>();
+            switchWeapon = SwitchWeapon();
+            switchWeapon.MoveNext();
             SetControllerType();
             animator = GetComponent<Animator>();
 
@@ -79,11 +83,6 @@ namespace Units.Player
                     Rotate();
                     break;
             }
-        }
-
-        public void FinishCastingAnimation() //вызывается из анимации окончания атаки
-        {
-            Weapon.FinishCasting();
         }
 
         private void SendEventIfPlayerFell()
@@ -138,9 +137,27 @@ namespace Units.Player
                         Weapon.CancelAttack();
                     }
 
+                    if (Input.GetMouseButtonDown(1))
+                    {
+                        switchWeapon.MoveNext();
+                    }
+
                     break;
             }
         }
+
+        private IEnumerator SwitchWeapon()
+        {
+            while (true)
+            {
+                Destroy(gameObject.GetComponent<SpellBase>());
+                Weapon = gameObject.AddComponent<SnowBall>();
+                yield return null;
+                Destroy(gameObject.GetComponent<SpellBase>());
+                Weapon = gameObject.AddComponent<FireBall>();
+                yield return null;
+            }
+        } 
 
         private void MovePlayer()
         {

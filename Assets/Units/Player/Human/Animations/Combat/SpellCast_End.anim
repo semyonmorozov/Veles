@@ -71422,7 +71422,14 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.23333333
-    functionName: FinishCastingAnimation
+    functionName: OnSpellCasted
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.93333334
+    functionName: OnCastingAnimationFinish
     data: 
     objectReferenceParameter: {fileID: 2838008302997403939, guid: 019bde0776b4dd6449695c8d1c9e8d53, type: 3}
     floatParameter: 0
