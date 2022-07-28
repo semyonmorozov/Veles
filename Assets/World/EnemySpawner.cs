@@ -69,13 +69,13 @@ namespace World
         {
             if (spawnPoints.Length == 0)
                 return;
-            var spawnPointsBehindScreen = spawnPoints
+            /*var spawnPointsBehindScreen = spawnPoints
                 .Select(spawnPoint => (onScreenPosition: GetPositionOnScreen(spawnPoint), spawnPoint))
                 .Where(y => y.onScreenPosition.x < 0 || y.onScreenPosition.y < 0)
                 .Select(p => p.spawnPoint)
                 .ToArray();
-            var spawnPoint = spawnPointsBehindScreen[Random.Range(0, spawnPointsBehindScreen.Length - 1)];
-
+            var spawnPoint = spawnPointsBehindScreen[Random.Range(0, spawnPointsBehindScreen.Length - 1)];*/
+            var spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length - 1)];
             var spawnPointTransform = spawnPoint.transform;
             Instantiate(GetEnemy(), spawnPointTransform.position, spawnPointTransform.rotation, enemiesTransform);
         }

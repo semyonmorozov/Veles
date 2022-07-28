@@ -1,6 +1,7 @@
 ﻿using System.Linq;
+using Units.Player.Items;
+using Unity.VisualScripting;
 using UnityEngine;
-using World.Items;
 
 namespace World
 {
@@ -12,7 +13,7 @@ namespace World
         private void Awake()
         {
             spawnPoints = GameObject.FindGameObjectsWithTag("ItemSpawnPoint");
-            items = Resources.LoadAll("Items");
+            items = Resources.LoadAll("Items").Where(x=>x.GetComponent<ItemBase>() != null).ToArray();
             GlobalEventManager.EnemyDeath.AddListener(SpawnItem);
         }
 

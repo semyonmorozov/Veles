@@ -1,7 +1,6 @@
-﻿using Units.Player;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace World.Items
+namespace Units.Player.Items
 {
     public class IntelligenceUp : ItemBase
     {
