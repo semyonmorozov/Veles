@@ -7,16 +7,15 @@ namespace Units.Enemies
         public AudioClip DeadSound;
         private EnemyAIBase enemyAI;
         private new Collider collider;
-        private AudioSource audioSource;
+        private AudioSource deathAudioSource;
 
         protected override void Awake()
         {
             base.Awake();
             enemyAI = GetComponent<EnemyAIBase>();
             collider = GetComponent<Collider>();
-            audioSource = gameObject.AddComponent<AudioSource>();
-            audioSource = gameObject.AddComponent<AudioSource>();
-            audioSource.outputAudioMixerGroup = GetComponent<UnitStateSounds>().StateMixer;
+            deathAudioSource = gameObject.AddComponent<AudioSource>();
+            deathAudioSource.outputAudioMixerGroup = GetComponent<UnitStateSounds>().StateMixer;
         }
 
         public override void TakeDamage(int damage)
@@ -31,7 +30,8 @@ namespace Units.Enemies
             GlobalEventManager.EnemyDeath.Invoke(transform);
             enemyAI.EnemyState = EnemyState.Dead;
             collider.isTrigger = true;
-            audioSource.PlayOneShot(DeadSound);
+            deathAudioSource.pitch = Random.Range(0.9f, 1.1f);
+            deathAudioSource.PlayOneShot(DeadSound);
         }
 
         public void DeathAnimationEnded()

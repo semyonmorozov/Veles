@@ -7,13 +7,11 @@ namespace Units.Player.Weapon.SnowBall
     public class FireBall : SpellBase
     {
         public Object Projectile;
-
-        private int Damage => 10 + playerStats.Intelligence * 5;
-        private float Force => -1f + playerStats.WillPower * 20f;
-        private float Size => 0.5f + playerStats.Intelligence / 8f;
-        private float ProjectileMoveSpeed => 200f + playerStats.Strength * 30f;
-        private float ProjectileLifeTime => 1f + playerStats.Endurance / 1.5f;
-        protected override float Cooldown => 0;
+        private int Damage => 10 + playerStats.Intelligence * 2;
+        private float Size => 0.5f + playerStats.Intelligence / 10f;
+        private float ProjectileMoveSpeed => 400f + playerStats.Intelligence * 30f;
+        private float ProjectileLifeTime => 1f + playerStats.WillPower / 3f;
+        protected override float Cooldown => 3f - playerStats.WillPower / 4f;
         protected override float CastTime => 0;
         
         private PlayerStats playerStats;
