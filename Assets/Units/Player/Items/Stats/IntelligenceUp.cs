@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 
-namespace Units.Player.Items
+namespace Units.Player.Items.Stats
 {
     public class IntelligenceUp : ItemBase
     {
-        protected override void OnPickUp(GameObject collisionGameObject)
+        public override void OnPickUp(GameObject collisionGameObject)
         {
             collisionGameObject.GetComponent<PlayerStats>().Intelligence += 1;
         }

@@ -15,17 +15,13 @@ namespace Units.Player.Weapon.SnowBall
         protected override float CastTime => 0;
         
         private PlayerStats playerStats;
-        private Rigidbody playerRigidbody;
-        private Rigidbody projectileRigidbody;
         private FireBallProjectile fireBallProjectile;
 
         private new void Awake()
         {
             base.Awake();
             playerStats = GetComponent<PlayerStats>();
-            playerRigidbody = GetComponent<Rigidbody>();
             Projectile = Resources.Load("Weapon/FireBall/FireBallProjectile");
-            projectileRigidbody = Projectile.GetComponent<Rigidbody>();
             fireBallProjectile = Projectile.GetComponent<FireBallProjectile>();
         }
 
@@ -35,8 +31,6 @@ namespace Units.Player.Weapon.SnowBall
             fireBallProjectile.Size = Size;
             fireBallProjectile.MoveSpeed = ProjectileMoveSpeed;
             fireBallProjectile.LifeTimeSeconds = ProjectileLifeTime;
-
-            //projectileRigidbody.velocity = playerRigidbody.velocity;
 
             var playerTransform = transform;
             var playerTransformRotation = playerTransform.rotation;

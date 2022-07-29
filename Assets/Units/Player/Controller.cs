@@ -1,10 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Extensions;
 using Units.Player.Weapon;
 using Units.Player.Weapon.SnowBall;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 
 namespace Units.Player
 {
@@ -40,12 +42,14 @@ namespace Units.Player
 
         private UnitMovingSound playerSounds;
         private IEnumerator switchWeapon;
+        private EventSystem eventSystem;
 
         private float Speed => 100 + playerStats.Agility * 50;
         private float RotationSpeed => 20 + playerStats.Agility * 10;
 
         private void Awake()
         {
+            eventSystem = EventSystem.current;
             rigidbody = GetComponent<Rigidbody>();
             camera = Camera.main;
 
@@ -98,8 +102,9 @@ namespace Units.Player
             switch (ControllerType)
             {
                 case ControllerType.Mouse:
-                    var mousePos = GetMousePosition();
-                    var lookRotation = Quaternion.LookRotation(mousePos - transform.position);
+                    var transformPosition = transform.position;
+                    var mousePos = camera.GetMousePosition(transformPosition.y);
+                    var lookRotation = Quaternion.LookRotation(mousePos - transformPosition);
                     lookRotation.z = 0;
                     lookRotation.x = 0;
                     transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation,
@@ -112,15 +117,6 @@ namespace Units.Player
             }
         }
 
-        private Vector3 GetMousePosition()
-        {
-            var ray = camera.ScreenPointToRay(Input.mousePosition);
-            var plane = new Plane(Vector3.up, transform.position);
-
-            plane.Raycast(ray, out var hitInfo);
-            return ray.GetPoint(hitInfo);
-        }
-
         private void Update()
         {
             switch (State)
@@ -128,11 +124,12 @@ namespace Units.Player
                 case ControllerState.InMenu:
                     break;
                 case ControllerState.ExploreWorld:
-                    if (Input.GetMouseButton(0))
+                    
+                    if (Input.GetMouseButton(0) && !eventSystem.IsPointerOverGameObject())
                     {
                         Weapon.StartAttack();
                     }
-                    else if (Input.GetMouseButtonUp(0))
+                    else if (Input.GetMouseButtonUp(0) && !eventSystem.IsPointerOverGameObject())
                     {
                         Weapon.CancelAttack();
                     }

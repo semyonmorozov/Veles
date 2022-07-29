@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace CTI {
+namespace External.Conifers__BOTD_.Render_Pipeline_Support.Built_in_RP.CTI_Runtime_Components.Scripts {
 	
 	public static class CTI_Utils {
 

@@ -1,5 +1,4 @@
-﻿using System;
-using Unity.VisualScripting;
+﻿using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Units.Player.Items
@@ -7,29 +6,23 @@ namespace Units.Player.Items
     public abstract class ItemBase : MonoBehaviour
     {
         public string Name;
-        private bool highlighted = false;
         private ItemDescription itemDescription;
+        private Canvas itemDescriptionCanvas;
 
-        private void Awake()
+        protected virtual void Awake()
         {
             Name = name;
             var itemDescriptionCanvasResource = Resources.Load("Items/ItemDescriptionCanvas");
             var itemTransform = transform;
-            var itemDescriptionCanvas = Instantiate(itemDescriptionCanvasResource, itemTransform.position, Quaternion.identity, itemTransform);
-            itemDescription = itemDescriptionCanvas.GetComponentInChildren<ItemDescription>();
+
+            var descriptionCanvasObject = Instantiate(itemDescriptionCanvasResource, itemTransform.position, Quaternion.identity, itemTransform);
+            itemDescriptionCanvas = descriptionCanvasObject.GetComponent<Canvas>();
+            itemDescriptionCanvas.enabled = false;
+
+            itemDescription = descriptionCanvasObject.GetComponent<ItemDescription>();
             itemDescription.SetName(Name);
         }
 
-        private void OnTriggerEnter(Collider other)
-        {
-            var collisionGameObject = other.gameObject;
-            if (collisionGameObject.CompareTag("Player"))
-            {
-                OnPickUp(collisionGameObject);
-                Destroy(gameObject);
-            }
-        }
-
-        protected abstract void OnPickUp(GameObject collisionGameObject);
+        public abstract void OnPickUp(GameObject collisionGameObject);
     }
 }

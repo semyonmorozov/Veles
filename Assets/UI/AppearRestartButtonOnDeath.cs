@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace World
+namespace UI
 {
     public class AppearRestartButtonOnDeath: MonoBehaviour
     {

@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-namespace CTI {
+namespace External.Conifers__BOTD_.Render_Pipeline_Support.Built_in_RP.CTI_Runtime_Components.Scripts {
 
     [ExecuteInEditMode]
 	[RequireComponent (typeof (WindZone))]

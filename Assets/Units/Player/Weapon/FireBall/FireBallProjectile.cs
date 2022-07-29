@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using Units.Enemies;
 using UnityEngine;
@@ -44,7 +43,7 @@ namespace Units.Player.Weapon.FireBall
             if (!target.CompareTag("Enemy"))
                 return;
             target.GetComponent<EnemyHealth>().TakeDamage(Damage);
-            StartCoroutine(DestroyAfterSeconds(1));
+            StartCoroutine(DestroyAfterSeconds(0.1f));
         }
 
         private IEnumerator DestroyAfterSeconds(float lifeTime)

@@ -1,4 +1,6 @@
-﻿using TMPro;
+﻿using System;
+using Extensions;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,12 +8,16 @@ namespace Units.Player.Items
 {
     public class ItemDescription : MonoBehaviour
     {
-        private GameObject mainCamera;
-        
+        private Camera mainCamera;
+        private Canvas canvas;
+        private ItemBase item;
+        private const float PointerHighlightDistance = 1f;
+
         private void Awake()
         {
-            mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-            GetComponent<Canvas>().worldCamera = mainCamera.GetComponent<Camera>();
+            mainCamera = Camera.main;
+            canvas = GetComponent<Canvas>();
+            canvas.worldCamera = mainCamera;
             
             RotateToCamera();
             
@@ -21,6 +27,29 @@ namespace Units.Player.Items
             instantiateTransform.position = instantiatePosition;
             
             GetComponent<Rigidbody>().velocity = instantiateTransform.forward * 2;
+
+            item = gameObject.GetComponentInParent<ItemBase>();
+            canvas.GetComponent<Button>().onClick.AddListener(InnerOnPickUp);
+        }
+
+        private void InnerOnPickUp()
+        {
+            item.OnPickUp(GameObject.FindWithTag("Player"));
+            Destroy(item.gameObject);
+        }
+
+        private void FixedUpdate()
+        {
+            var highlighted = Input.GetKey(KeyCode.LeftAlt) || PointerNearItem();
+            canvas.enabled = highlighted;
+        }
+
+        private bool PointerNearItem()
+        {
+            var canvasPosition = canvas.transform.position;
+            var mousePosition = mainCamera.GetMousePosition(canvasPosition.y);
+            var delta = canvasPosition - mousePosition;
+            return Math.Abs(delta.x) < PointerHighlightDistance && Math.Abs(delta.z) < PointerHighlightDistance;
         }
 
         public void SetName(string itemName)
