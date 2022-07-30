@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fb6c80c21ae4a2c90835eb9bad851e1, type: 3}
-  m_Name: Lether Boots
+  m_Name: Plate Boots
   m_EditorClassIdentifier: 
-  Name: Lether Boots
-  ModelPath: Armors/Lether Clothes/Lether Boots
+  DropChance: 7
+  Name: Plate Boots
+  ModelPath: Armors/Plate/Plate Boots
   EquipType: 0
-  PickUpEquip: {fileID: 3159049304531260100, guid: 926147bf96e2fb64c996278717fde9ad, type: 3}
+  PickUpEquip: {fileID: 1535100699712309898, guid: d092d748fb4f0f84997945f6d0af081a, type: 3}
   DefaultModelNames:
   - Mesh/Body/Feet
   ArmourType: 5
-  Defence: 1
+  Defence: 3

@@ -1,10 +1,12 @@
 ﻿using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Units.Player.Items.Equip
 {
     public abstract class EquipBase : ScriptableObject
     {
+        public int DropChance = 0;
         public string Name;
         public string ModelPath;
         public EquipType EquipType;
@@ -51,7 +53,9 @@ namespace Units.Player.Items.Equip
         public void InstantiatePickUp(Vector3 spawnPosition)
         {
             PickUpEquip.GetComponent<PickUpEquip>().Equip = this;
-            Instantiate(PickUpEquip, spawnPosition, PickUpEquip.transform.rotation);
+            var gameObject = Instantiate(PickUpEquip, spawnPosition, PickUpEquip.transform.rotation);
+            var vector3 = new Vector3(Random.Range(-100, 100),200, Random.Range(-100, 100));
+            gameObject.GetComponent<Rigidbody>().AddForce(vector3);
         }
     }
 }

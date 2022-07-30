@@ -43,7 +43,7 @@ namespace Units.Player.Weapon.FireBall
             if (!target.CompareTag("Enemy"))
                 return;
             target.GetComponent<EnemyHealth>().TakeDamage(Damage);
-            StartCoroutine(DestroyAfterSeconds(0.1f));
+            StartCoroutine(DestroyAfterSeconds(0.3f));
         }
 
         private IEnumerator DestroyAfterSeconds(float lifeTime)

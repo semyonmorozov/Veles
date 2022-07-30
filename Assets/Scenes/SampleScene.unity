@@ -352,6 +352,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7351f7cd6cd4862b5fe4b742f1de709, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EquipItems:
+  - {fileID: 11400000, guid: 053355963974a4a4ea942edb7829badf, type: 2}
+  - {fileID: 11400000, guid: 66471d852dce21247b9fca19231dcdaa, type: 2}
+  - {fileID: 11400000, guid: de646d6762d404745883d193dce55e2f, type: 2}
+  - {fileID: 11400000, guid: da08dabaaf41487439386cff461f3664, type: 2}
+  - {fileID: 11400000, guid: 231897c6960b3204e8a89deec0ab6676, type: 2}
+  - {fileID: 11400000, guid: 7d5ae72e69e04404e8c4d18a78075a26, type: 2}
+  - {fileID: 11400000, guid: 5355eacb64630eb4db162bddc99949c8, type: 2}
+  - {fileID: 11400000, guid: 8e57ef1a5459f8d41870b1495a20c58d, type: 2}
+  - {fileID: 11400000, guid: 5fc4ddbca0ce709409401dd3c0df5336, type: 2}
+  StatUps:
+  - {fileID: 5339828746484206761, guid: 3e1e1e315f4536f4ba3ce6f5b9636f51, type: 3}
+  - {fileID: 8049499173734745088, guid: 847a4eb912f8f7d4188fab933906bab3, type: 3}
+  - {fileID: 5510543413317973548, guid: 0f2c5ac52ca8ea34d8538f77cc46e846, type: 3}
+  - {fileID: 6673360820274885257, guid: c783d22b016033247a5c6754cdd0db9f, type: 3}
+  - {fileID: 8345415451568410096, guid: 6ecf73b8f13f8bc49876b1a822668b4a, type: 3}
+  StatUpDropChance: 10
 --- !u!82 &55147566
 AudioSource:
   m_ObjectHideFlags: 0

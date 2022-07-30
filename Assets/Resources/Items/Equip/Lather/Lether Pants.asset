@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fb6c80c21ae4a2c90835eb9bad851e1, type: 3}
   m_Name: Lether Pants
   m_EditorClassIdentifier: 
+  DropChance: 9
   Name: Lether Pants
   ModelPath: Armors/Lether Clothes/Lether Pants
   EquipType: 0
