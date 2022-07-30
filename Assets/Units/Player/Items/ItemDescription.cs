@@ -10,7 +10,7 @@ namespace Units.Player.Items
     {
         private Camera mainCamera;
         private Canvas canvas;
-        private ItemBase item;
+        private PickUpItemBase pickUpItem;
         private const float PointerHighlightDistance = 1f;
 
         private void Awake()
@@ -28,14 +28,14 @@ namespace Units.Player.Items
             
             GetComponent<Rigidbody>().velocity = instantiateTransform.forward * 2;
 
-            item = gameObject.GetComponentInParent<ItemBase>();
+            pickUpItem = gameObject.GetComponentInParent<PickUpItemBase>();
             canvas.GetComponent<Button>().onClick.AddListener(InnerOnPickUp);
         }
 
         private void InnerOnPickUp()
         {
-            item.OnPickUp(GameObject.FindWithTag("Player"));
-            Destroy(item.gameObject);
+            pickUpItem.OnPickUp(GameObject.FindWithTag("Player"));
+            Destroy(pickUpItem.gameObject);
         }
 
         private void FixedUpdate()

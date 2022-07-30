@@ -605,6 +605,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentHealth: 0
   DeadSound: {fileID: 8300000, guid: 6a007e8822bc5b248a9a4b7200ee6910, type: 3}
+  EnemyMaxHealth: 10
 --- !u!114 &7936658194001659813
 MonoBehaviour:
   m_ObjectHideFlags: 0

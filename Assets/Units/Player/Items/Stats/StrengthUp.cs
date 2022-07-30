@@ -2,11 +2,11 @@
 
 namespace Units.Player.Items.Stats
 {
-    public class StrengthUp : ItemBase
+    public class StrengthUp : PickUpItemBase
     {
-        public override void OnPickUp(GameObject collisionGameObject)
+        public override void OnPickUp(GameObject playerGameObject)
         {
-            collisionGameObject.GetComponent<PlayerStats>().Strength += 1;
+            playerGameObject.GetComponent<PlayerStats>().Strength += 1;
         }
     }
 }

@@ -1,19 +1,20 @@
 ﻿using System.Linq;
 using Units.Player.Items;
+using Units.Player.Items.Equip;
 using Unity.VisualScripting;
 using UnityEngine;
 
 namespace World
 {
-    public class ItemsSpawner: MonoBehaviour
+    public class EquipSpawner : MonoBehaviour
     {
-        private Object[] items;
+        private EquipBase[] items;
         private GameObject[] spawnPoints;
 
         private void Awake()
         {
             spawnPoints = GameObject.FindGameObjectsWithTag("ItemSpawnPoint");
-            items = Resources.LoadAll("Items").Where(x=>x.GetComponent<ItemBase>() != null).ToArray();
+            items = Resources.LoadAll("Items/Equip").Select(x => (EquipBase)x).ToArray();
             GlobalEventManager.EnemyDeath.AddListener(SpawnItem);
         }
 
@@ -27,15 +28,13 @@ namespace World
 
         private void SpawnItem(Transform enemyTransform)
         {
-            if (Random.Range(0, 100) >= 30)
+            if (Random.Range(0, 100) <= 100)
             {
-                return;
+                var item = items[Random.Range(0, items.Length)];
+                var position = enemyTransform.position;
+                position.y += 2;
+                item.InstantiatePickUp(position);
             }
-            
-            var item = items[Random.Range(0, items.Length)];
-            var position = enemyTransform.position;
-            position.y += 2;
-            Instantiate(item, position, enemyTransform.rotation);
         }
     }
 }

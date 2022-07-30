@@ -2,11 +2,11 @@
 
 namespace Units.Player.Items.Stats
 {
-    public class EnduranceUp : ItemBase
+    public class EnduranceUp : PickUpItemBase
     {
-        public override void OnPickUp(GameObject collisionGameObject)
+        public override void OnPickUp(GameObject playerGameObject)
         {
-            collisionGameObject.GetComponent<PlayerStats>().Endurance += 1;
+            playerGameObject.GetComponent<PlayerStats>().Endurance += 1;
         }
     }
 }

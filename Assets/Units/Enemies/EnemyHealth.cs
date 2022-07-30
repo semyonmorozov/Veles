@@ -5,9 +5,12 @@ namespace Units.Enemies
     public class EnemyHealth : Health
     {
         public AudioClip DeadSound;
+        public int EnemyMaxHealth = 100;
         private EnemyAIBase enemyAI;
         private new Collider collider;
         private AudioSource deathAudioSource;
+
+        public override int MaxHealth => EnemyMaxHealth;
 
         protected override void Awake()
         {

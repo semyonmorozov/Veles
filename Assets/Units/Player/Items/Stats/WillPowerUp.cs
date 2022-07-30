@@ -2,11 +2,11 @@
 
 namespace Units.Player.Items.Stats
 {
-    public class WillPowerUp : ItemBase
+    public class WillPowerUp : PickUpItemBase
     {
-        public override void OnPickUp(GameObject collisionGameObject)
+        public override void OnPickUp(GameObject playerGameObject)
         {
-            collisionGameObject.GetComponent<PlayerStats>().WillPower += 1;
+            playerGameObject.GetComponent<PlayerStats>().WillPower += 1;
         }
     }
 }

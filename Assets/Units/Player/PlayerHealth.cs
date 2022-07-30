@@ -11,10 +11,12 @@ namespace Units.Player
 
         private PlayerStats playerStats;
         private AudioSource audioSource;
+        private PlayerEquip playerEquip;
 
         protected override void Awake()
         {
             playerStats = GetComponent<PlayerStats>();
+            playerEquip = GetComponent<PlayerEquip>();
             base.Awake();
             StartCoroutine(Regeneration());
             audioSource = GetComponent<AudioSource>();
@@ -36,7 +38,12 @@ namespace Units.Player
 
         public override void TakeDamage(int damage)
         {
+            damage -= playerEquip.Defence();
+            if(damage<=0)
+                return;
+            
             base.TakeDamage(damage);
+            
             if (!IsDead())
             {
                 audioSource.pitch = Random.Range(0.9f, 1.1f);

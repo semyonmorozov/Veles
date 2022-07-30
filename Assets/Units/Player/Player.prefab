@@ -1336,12 +1336,12 @@ GameObject:
   - component: {fileID: 2838008301836246530}
   - component: {fileID: 2838008301836246533}
   m_Layer: 6
-  m_Name: Starter_Boots
+  m_Name: Lether Boots
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2838008301836246530
 Transform:
   m_ObjectHideFlags: 0
@@ -1364,7 +1364,7 @@ SkinnedMeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2838008301836246531}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2588,12 +2588,12 @@ GameObject:
   - component: {fileID: 2838008302227890862}
   - component: {fileID: 2838008302227890897}
   m_Layer: 6
-  m_Name: Starter_Chest
+  m_Name: Lether Chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2838008302227890862
 Transform:
   m_ObjectHideFlags: 0
@@ -2616,7 +2616,7 @@ SkinnedMeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2838008302227890863}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -3813,7 +3813,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2838008302645673412}
   m_Layer: 6
-  m_Name: StarterClothes
+  m_Name: Lether Clothes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4623,6 +4623,7 @@ GameObject:
   - component: {fileID: -3648568050871247034}
   - component: {fileID: -1760256772705468434}
   - component: {fileID: -4321943212452665629}
+  - component: {fileID: -573725887409149733}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -4940,6 +4941,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StateMixer: {fileID: 9040640688284279011, guid: 3cdabb18ffa74f742a0f148d952c4b44, type: 2}
+--- !u!114 &-573725887409149733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2838008302997403939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4f7f6bc2fb4181927086976d3e4ff3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ArmourEquip: []
 --- !u!1 &2838008303001005038
 GameObject:
   m_ObjectHideFlags: 0
@@ -5551,12 +5565,12 @@ GameObject:
   - component: {fileID: 2838008303220022564}
   - component: {fileID: 2838008303220022567}
   m_Layer: 6
-  m_Name: Starter_Pants
+  m_Name: Lether Pants
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2838008303220022564
 Transform:
   m_ObjectHideFlags: 0
@@ -5579,7 +5593,7 @@ SkinnedMeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2838008303220022565}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
