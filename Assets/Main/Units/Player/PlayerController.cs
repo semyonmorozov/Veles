@@ -39,7 +39,6 @@ namespace Main.Units.Player
 
             playerStats = GetComponent<PlayerStats>();
 
-            GlobalEventManager.PlayerDeath.AddListener(() => State = ControllerState.InMenu);
             switchWeapon = SwitchWeapon();
             switchWeapon.MoveNext();
             SetControllerType();
@@ -100,16 +99,16 @@ namespace Main.Units.Player
                     break;
                 case ControllerState.ExploreWorld:
                     
-                    if (Input.GetMouseButton(0) && !eventSystem.IsPointerOverGameObject())
+                    if (Input.GetMouseButton(0) && !eventSystem.IsPointerOverGameObject(-1))
                     {
                         Weapon.StartAttack();
                     }
-                    else if (Input.GetMouseButtonUp(0) && !eventSystem.IsPointerOverGameObject())
+                    else if (Input.GetMouseButtonUp(0))
                     {
                         Weapon.CancelAttack();
                     }
 
-                    if (Input.GetMouseButtonDown(1))
+                    if (Input.GetMouseButtonDown(1) && !eventSystem.IsPointerOverGameObject())
                     {
                         switchWeapon.MoveNext();
                     }
