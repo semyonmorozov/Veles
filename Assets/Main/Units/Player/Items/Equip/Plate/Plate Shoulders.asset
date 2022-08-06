@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Plate Shoulders
+  m_EditorClassIdentifier: Assembly-CSharp:Main.Units.Player.Items.Equip:ShouldersEquip
+  DropChance: 3
+  DropModel: {fileID: 4230819466692651392, guid: 5058cfcf3ee2d824aa55f14d2bb0daff, type: 3}
+  NameInGame: Plate Shoulders
+  Defence: 2
+  ModelPath: Armors/Plate/Plate Shoulders
+  DefaultModelNames: []

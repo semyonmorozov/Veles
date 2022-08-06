@@ -6,12 +6,12 @@ namespace Main.UI.Stats.MainStats
 {
     public abstract class UiPlayerStatsBase : MonoBehaviour
     {
-        protected PlayerStats PlayerStats;
+        protected PlayerMainStats PlayerMainStats;
         private TextMeshProUGUI countTextMesh;
 
         private void Awake()
         {
-            PlayerStats = FindObjectOfType<PlayerStats>();
+            PlayerMainStats = FindObjectOfType<PlayerMainStats>();
             countTextMesh = GetComponent<TextMeshProUGUI>();
         }
 

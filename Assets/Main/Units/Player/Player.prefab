@@ -1336,7 +1336,7 @@ GameObject:
   - component: {fileID: 2838008301836246530}
   - component: {fileID: 2838008301836246533}
   m_Layer: 6
-  m_Name: Lether Boots
+  m_Name: Leather Boots
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2588,7 +2588,7 @@ GameObject:
   - component: {fileID: 2838008302227890862}
   - component: {fileID: 2838008302227890897}
   m_Layer: 6
-  m_Name: Lether Chest
+  m_Name: Leather Chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3813,7 +3813,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2838008302645673412}
   m_Layer: 6
-  m_Name: Lether Clothes
+  m_Name: Leather Clothes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4612,7 +4612,6 @@ GameObject:
   - component: {fileID: 2838008302997403943}
   - component: {fileID: 2838008302997403942}
   - component: {fileID: 2838008302997403945}
-  - component: {fileID: 2838008302997403946}
   - component: {fileID: 2838008302997403948}
   - component: {fileID: 2838008302997403951}
   - component: {fileID: 2838008302997403950}
@@ -4623,6 +4622,7 @@ GameObject:
   - component: {fileID: -1760256772705468434}
   - component: {fileID: -4321943212452665629}
   - component: {fileID: -573725887409149733}
+  - component: {fileID: 5340415897936943715}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -4678,23 +4678,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8afed739df6c4db43848ab7e4e05be11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FallPositionY: 0
   State: 1
   ControllerType: 0
   Weapon: {fileID: 0}
---- !u!114 &2838008302997403946
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2838008302997403939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26b738f18a544e31a7896e28ed2b5ad6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WaitSecondsUntilUpdateRespawnPosition: 2
 --- !u!114 &2838008302997403948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4781,7 +4767,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1.7
-  m_BaseOffset: -0.05
+  m_BaseOffset: -0.1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!82 &4155632072902592831
@@ -4940,7 +4926,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d4f7f6bc2fb4181927086976d3e4ff3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ArmourEquip: []
+  Helmet: {fileID: 0}
+  Shoulders: {fileID: 0}
+  Chest: {fileID: 0}
+  Gloves: {fileID: 0}
+  Pants: {fileID: 0}
+  Boots: {fileID: 0}
+--- !u!114 &5340415897936943715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2838008302997403939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 054ae3ca6a404b98a9f5dcf74ef6470e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PickUpDistance: 5
 --- !u!1 &2838008303001005038
 GameObject:
   m_ObjectHideFlags: 0
@@ -5552,7 +5556,7 @@ GameObject:
   - component: {fileID: 2838008303220022564}
   - component: {fileID: 2838008303220022567}
   m_Layer: 6
-  m_Name: Lether Pants
+  m_Name: Leather Pants
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

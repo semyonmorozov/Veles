@@ -2,6 +2,6 @@
 {
     public class LuckStatUi : UiPlayerStatsBase
     {
-        protected override int GetStat() => PlayerStats.Luck;
+        protected override int GetStat() => PlayerMainStats.Luck;
     }
 }

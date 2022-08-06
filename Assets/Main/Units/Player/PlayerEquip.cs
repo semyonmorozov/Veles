@@ -7,11 +7,17 @@ namespace Main.Units.Player
 {
     public class PlayerEquip : MonoBehaviour
     {
-        public List<ArmourEquip> ArmourEquip;
-
+        public HelmetEquip Helmet;
+        public ShouldersEquip Shoulders;
+        public ChestEquip Chest;
+        public GlovesEquip Gloves;
+        public PantsEquip Pants;
+        public BootsEquip Boots;
+        
+        
         public int Defence()
         {
-            return ArmourEquip.Sum(x => x.Defence);
+            return 0;
         }
     }
 }

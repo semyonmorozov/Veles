@@ -19,7 +19,7 @@ namespace Main.Units.Player
 
         private new Rigidbody rigidbody;
         private new Camera camera;
-        private PlayerStats playerStats;
+        private PlayerMainStats playerMainStats;
         private Animator animator;
 
         private static readonly int MovingTriggerName = Animator.StringToHash("MovingState");
@@ -28,8 +28,8 @@ namespace Main.Units.Player
         private IEnumerator switchWeapon;
         private EventSystem eventSystem;
 
-        private float Speed => 100 + playerStats.Agility * 50;
-        private float RotationSpeed => 20 + playerStats.Agility * 10;
+        private float Speed => 100 + playerMainStats.Agility * 50;
+        private float RotationSpeed => 20 + playerMainStats.Agility * 10;
 
         private void Awake()
         {
@@ -37,7 +37,7 @@ namespace Main.Units.Player
             rigidbody = GetComponent<Rigidbody>();
             camera = Camera.main;
 
-            playerStats = GetComponent<PlayerStats>();
+            playerMainStats = GetComponent<PlayerMainStats>();
 
             switchWeapon = SwitchWeapon();
             switchWeapon.MoveNext();
@@ -142,6 +142,7 @@ namespace Main.Units.Player
             }
             else
             {
+                rigidbody.velocity -= rigidbody.velocity * 0.5f;
                 playerSounds.StopMovingSounds();
             }
             AnimateMoving(horizontalDelta, verticalDelta);

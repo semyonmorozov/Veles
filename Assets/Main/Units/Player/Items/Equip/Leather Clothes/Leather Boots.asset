@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Leather Boots
+  m_EditorClassIdentifier: Assembly-CSharp:Main.Units.Player.Items.Equip:BootsEquip
+  DropChance: 5
+  DropModel: {fileID: 3159049304531260100, guid: 926147bf96e2fb64c996278717fde9ad, type: 3}
+  NameInGame: Leather Boots
+  Defence: 1
+  ModelPath: Armors/Leather Clothes/Leather Boots
+  DefaultModelNames:
+  - Mesh/Body/Feet

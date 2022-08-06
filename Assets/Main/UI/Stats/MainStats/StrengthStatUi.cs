@@ -2,6 +2,6 @@
 {
     public class StrengthStatUi : UiPlayerStatsBase
     {
-        protected override int GetStat() => PlayerStats.Strength;
+        protected override int GetStat() => PlayerMainStats.Strength;
     }
 }

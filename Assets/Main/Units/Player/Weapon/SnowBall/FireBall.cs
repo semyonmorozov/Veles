@@ -7,20 +7,20 @@ namespace Main.Units.Player.Weapon.SnowBall
     public class FireBall : SpellBase
     {
         public Object Projectile;
-        private int Damage => 10 + playerStats.Intelligence * 2;
-        private float Size => 0.5f + playerStats.Intelligence / 10f;
-        private float ProjectileMoveSpeed => 400f + playerStats.Intelligence * 30f;
-        private float ProjectileLifeTime => 1f + playerStats.WillPower / 3f;
-        protected override float Cooldown => 3f - playerStats.WillPower / 4f;
+        private int Damage => 10 + playerMainStats.Intelligence * 2;
+        private float Size => 0.5f + playerMainStats.Intelligence / 10f;
+        private float ProjectileMoveSpeed => 400f + playerMainStats.Intelligence * 30f;
+        private float ProjectileLifeTime => 1f + playerMainStats.WillPower / 3f;
+        protected override float Cooldown => 3f - playerMainStats.WillPower / 4f;
         protected override float CastTime => 0;
         
-        private PlayerStats playerStats;
+        private PlayerMainStats playerMainStats;
         private FireBallProjectile fireBallProjectile;
 
         private new void Awake()
         {
             base.Awake();
-            playerStats = GetComponent<PlayerStats>();
+            playerMainStats = GetComponent<PlayerMainStats>();
             Projectile = Resources.Load("Weapon/FireBall/FireBallProjectile");
             fireBallProjectile = Projectile.GetComponent<FireBallProjectile>();
         }

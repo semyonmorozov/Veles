@@ -2,6 +2,6 @@
 {
     public class IntelligenceStatUi : UiPlayerStatsBase
     {
-        protected override int GetStat() => PlayerStats.Intelligence;
+        protected override int GetStat() => PlayerMainStats.Intelligence;
     }
 }

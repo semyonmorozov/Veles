@@ -6,16 +6,16 @@ namespace Main.Units.Player.Weapon.SnowBall
     public class SnowBall : SpellBase
     {
         public Object Projectile;
-        private PlayerStats playerStats;
+        private PlayerMainStats playerMainStats;
         private SnowBallProjectile snowBallProjectile;
         private Rigidbody playerRigidbody;
         private Rigidbody projectileRigidbody;
 
-        private int Damage => 10 + playerStats.Intelligence * 5;
-        private float Force => -1f + playerStats.WillPower * 20f;
-        private float Size => 0.5f + playerStats.Intelligence / 8f;
-        private float ProjectileMoveSpeed => 200f + playerStats.Strength * 30f;
-        private float ProjectileLifeTime => 1f + playerStats.Endurance / 1.5f;
+        private int Damage => 10 + playerMainStats.Intelligence * 5;
+        private float Force => -1f + playerMainStats.WillPower * 20f;
+        private float Size => 0.5f + playerMainStats.Intelligence / 8f;
+        private float ProjectileMoveSpeed => 200f + playerMainStats.Strength * 30f;
+        private float ProjectileLifeTime => 1f + playerMainStats.Endurance / 1.5f;
 
         protected override float Cooldown => 0;
 
@@ -23,7 +23,7 @@ namespace Main.Units.Player.Weapon.SnowBall
         {
             get
             {
-                var castTime = 3f - (playerStats.Intelligence * 2 + playerStats.WillPower) / 30f * 3f;
+                var castTime = 3f - (playerMainStats.Intelligence * 2 + playerMainStats.WillPower) / 30f * 3f;
                 return castTime < 0.5f ? 0.5f : castTime;
             }
         }
@@ -31,7 +31,7 @@ namespace Main.Units.Player.Weapon.SnowBall
         private new void Awake()
         {
             base.Awake();
-            playerStats = GetComponent<PlayerStats>();
+            playerMainStats = GetComponent<PlayerMainStats>();
             playerRigidbody = GetComponent<Rigidbody>();
             Projectile = Resources.Load("Weapon/SnowBall/SnowBallProjectile");
             CastSound = (AudioClip)Resources.Load("Weapon/SnowBall/SnowBallCast");

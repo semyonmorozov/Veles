@@ -1,34 +1,48 @@
-﻿using UnityEngine;
-using Random = UnityEngine.Random;
+﻿using System.Linq;
+using Unity.VisualScripting;
+using UnityEngine;
 
 namespace Main.Units.Player.Items.Equip
 {
-    public abstract class EquipBase : ScriptableObject
+    public abstract class EquipBase : DropBase
     {
-        public int DropChance = 0;
-        public string Name;
-        public string ModelPath;
-        public EquipType EquipType;
-        public GameObject PickUpEquip;
-        public string[] DefaultModelNames;
+        public int Defence;
 
-        public void SetEquipModel(GameObject player)
+        public string ModelPath;
+        public string[] DefaultModelNames;
+        protected abstract EquipBase GetEquippedItem(PlayerEquip playerEquip);
+        protected abstract void SetEquip(PlayerEquip playerEquip);
+        
+        protected override void InnerOnDrop(GameObject pickUpObject)
+        {
+            var vector3 = new Vector3(Random.Range(-100, 100),200, Random.Range(-100, 100));
+            pickUpObject.GetComponentInChildren<Rigidbody>().AddForce(vector3);
+        }
+
+        protected override void InnerOnPickUp(GameObject playerGameObject)
+        {
+            var playerEquip = playerGameObject.GetComponent<PlayerEquip>();
+            var equippedItem = GetEquippedItem(playerEquip);
+            if (equippedItem != null)
+            {
+                equippedItem.RemoveEquipModel(playerGameObject);
+                equippedItem.OnDrop(playerGameObject.transform.position);
+            }
+            else
+            {
+                RemoveDefaultModel(playerGameObject);
+            }
+
+            SetEquip(playerEquip);
+            SetEquipModel(playerGameObject);
+        }
+
+        private void SetEquipModel(GameObject player)
         {
             ChangeModelState(player, ModelPath, true);
         }
 
-        private void ChangeModelState(GameObject player, string modelPath, bool enabled)
-        {
-            var transform = player.transform.Find(modelPath);
-            if (transform != null)
-                transform.GetComponent<Renderer>().enabled = enabled;
-            else
-            {
-                Debug.Log($"Missing model {Name}");
-            }
-        }
-
-        public void RemoveEquipModel(GameObject player)
+        private void RemoveEquipModel(GameObject player)
         {
             ChangeModelState(player, ModelPath, false);
         }
@@ -41,7 +55,7 @@ namespace Main.Units.Player.Items.Equip
             }
         }
 
-        public void RemoveDefaultModel(GameObject player)
+        private void RemoveDefaultModel(GameObject player)
         {
             foreach (var defaultModelName in DefaultModelNames)
             {
@@ -49,12 +63,15 @@ namespace Main.Units.Player.Items.Equip
             }
         }
 
-        public void InstantiatePickUp(Vector3 spawnPosition)
+        private void ChangeModelState(GameObject player, string modelPath, bool enabled)
         {
-            PickUpEquip.GetComponent<PickUpEquip>().Equip = this;
-            var gameObject = Instantiate(PickUpEquip, spawnPosition, PickUpEquip.transform.rotation);
-            var vector3 = new Vector3(Random.Range(-100, 100),200, Random.Range(-100, 100));
-            gameObject.GetComponent<Rigidbody>().AddForce(vector3);
+            var transform = player.transform.Find(modelPath);
+            if (transform != null)
+                transform.GetComponent<Renderer>().enabled = enabled;
+            else
+            {
+                Debug.Log($"Missing model {NameInGame}");
+            }
         }
     }
 }

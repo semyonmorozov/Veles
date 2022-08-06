@@ -2,6 +2,6 @@
 {
     public class WillPowerStatUi : UiPlayerStatsBase
     {
-        protected override int GetStat() => PlayerStats.WillPower;
+        protected override int GetStat() => PlayerMainStats.WillPower;
     }
 }

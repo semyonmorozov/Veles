@@ -2,6 +2,6 @@
 {
     public class AgilityStatUi : UiPlayerStatsBase
     {
-        protected override int GetStat() => PlayerStats.Agility;
+        protected override int GetStat() => PlayerMainStats.Agility;
     }
 }

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Plate Chest
+  m_EditorClassIdentifier: Assembly-CSharp:Main.Units.Player.Items.Equip:ChestEquip
+  DropChance: 3
+  DropModel: {fileID: 5621447100452075574, guid: 7e98bacc926a1bf408c3f1249bea75ca, type: 3}
+  NameInGame: Plate Chest
+  Defence: 3
+  ModelPath: Armors/Plate/Plate Chest
+  DefaultModelNames:
+  - Mesh/Body/Arms
+  - Mesh/Body/Chest

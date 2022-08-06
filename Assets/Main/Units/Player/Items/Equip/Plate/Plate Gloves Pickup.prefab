@@ -13,8 +13,7 @@ GameObject:
   - component: {fileID: 3346116154256528975}
   - component: {fileID: -3994972988870411724}
   - component: {fileID: 8943340645121514198}
-  - component: {fileID: -1296411763479581106}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Plate Gloves Pickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32,8 +31,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.99999976, y: 1, z: 0.99999976}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 8734778165186921689}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -116,78 +114,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.0097923, y: 0.14224386, z: 0.17733203}
   m_Center: {x: 0.00007301626, y: 1.435538, z: -0.14789388}
---- !u!114 &-1296411763479581106
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9202178286986004178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29d55fd5b160428caec4fec5cde8f02a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Equip: {fileID: 0}
---- !u!1001 &3401173537904973598
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 9202178286986004179}
-    m_Modifications:
-    - target: {fileID: 6200136338202088391, guid: 131de1c7089178d4da7d75ea343e5109, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6200136338202088391, guid: 131de1c7089178d4da7d75ea343e5109, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6200136338202088391, guid: 131de1c7089178d4da7d75ea343e5109, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.288
-      objectReference: {fileID: 0}
-    - target: {fileID: 6200136338202088391, guid: 131de1c7089178d4da7d75ea343e5109, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6200136338202088391, guid: 131de1c7089178d4da7d75ea343e5109, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6200136338202088391, guid: 131de1c7089178d4da7d75ea343e5109, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6200136338202088391, guid: 131de1c7089178d4da7d75ea343e5109, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6200136338202088391, guid: 131de1c7089178d4da7d75ea343e5109, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6200136338202088391, guid: 131de1c7089178d4da7d75ea343e5109, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6200136338202088391, guid: 131de1c7089178d4da7d75ea343e5109, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6200136338202088391, guid: 131de1c7089178d4da7d75ea343e5109, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6205306373206140847, guid: 131de1c7089178d4da7d75ea343e5109, type: 3}
-      propertyPath: m_Name
-      value: FireFlies
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 131de1c7089178d4da7d75ea343e5109, type: 3}
---- !u!4 &8734778165186921689 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6200136338202088391, guid: 131de1c7089178d4da7d75ea343e5109, type: 3}
-  m_PrefabInstance: {fileID: 3401173537904973598}
-  m_PrefabAsset: {fileID: 0}
